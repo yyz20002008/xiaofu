@@ -10,7 +10,7 @@
             商品详情
     </view>
     <view>
-            价格 $650
+            价格 ${{clothInfo.cloth_price}}
     </view>
     <view class="page-section">
         <view class="page-section-title">尺码</view>

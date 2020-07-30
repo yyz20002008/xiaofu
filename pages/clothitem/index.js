@@ -27,7 +27,9 @@ Page({
     ],
     clothInfo:{
       cloth_id: '',
-      num:''
+      num:0,
+      checked:false,
+      cloth_price:0
     },
   },
   
@@ -59,11 +61,14 @@ Page({
     //options(Object)
   onLoad: function(options) {
     const{cloth_id}=options;
-    console.log(cloth_id);
-    console.log('tempid:'+cloth_id);
+    //console.log(cloth_id);
+
     var str='clothInfo.cloth_id';
     this.setData({
-      [str]:cloth_id
+      clothInfo: {
+        cloth_id:cloth_id,
+        cloth_price:650
+      }
     })
     console.log(this.data.clothInfo);
   },
@@ -71,10 +76,12 @@ Page({
   handleCartAdd(){
 
     let cart=wx.getStorageSync('cart')||[];
-    console.log(this.data.clothInfo);
+    //console.log(this.data.clothInfo);
     let index=cart.findIndex((v)=>v.cloth_id===this.data.clothInfo.cloth_id);
+    console.log(cart);
     if (index===-1){
       this.data.clothInfo.num=1;
+      this.data.clothInfo.checked=true;
       cart.push(this.data.clothInfo);
     }
     else{
