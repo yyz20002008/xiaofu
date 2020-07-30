@@ -50,5 +50,11 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  onTapDayWeather(){
+    wx.showToast()
+    wx.navigateTo({
+      url: '/pages/logs/logs',
+    })
   }
 })
