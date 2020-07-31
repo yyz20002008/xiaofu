@@ -9,7 +9,8 @@
     "pages/demo1/demo1",
     "pages/index/index",
     "pages/index/list",
-    "pages/logs/logs"
+    "pages/pay/index"
+   
     
   ],
   "window":{
