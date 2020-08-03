@@ -5,14 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    schoolName:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const invitation_code=wx.getStorageSync('icode');
+    if(invitation_code==123){
+      this.setData({
+        schoolName:'北京一零一中学(圆明园校区)'
+      })
+      
+    }
   },
 
   /**

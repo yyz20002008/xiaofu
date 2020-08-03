@@ -5,12 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userinfo:{}
   },
 
-  backHome(){
-    wx.reLaunch({
-      url: '../showye/showye'
+  onShow(){
+    const userinfo=wx.getStorageSync("userinfo");
+    //console.log("print"+userinfo);
+    this.setData({
+      userinfo
     })
   }
 })

@@ -4,12 +4,9 @@ Page({
     icode:''
   },
   goToSchoolPage: function(e){
-    if (this.data.icode==123){
-  
-      wx.switchTab({
-      
-      url: '../school/index',
-      })
+    let {icode}=this.data;
+    if (icode==123){ 
+      wx.switchTab({url: '../school/index',})
     }
     else{
       wx.showToast({
@@ -21,6 +18,7 @@ Page({
         icode:''
       })
     }
+    wx.setStorageSync('icode', this.data.icode)
   },
   /*获取邀请码*/
   codeInput: function(e){
