@@ -1,0 +1,14 @@
+/* pages/showye/showye.wxss */
+
+@import "../../lib/weui.wxss";
+
+.page-section{
+justify-items: center;
+}
+.text-box{
+  justify-items: center;
+}
+.page_title{
+  text-align: center;
+  font-size: 34rpx;
+}

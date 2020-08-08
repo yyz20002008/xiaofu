@@ -1,0 +1,29 @@
+<!--pages/showye/showye.wxml-->
+
+<view class="container">
+  <view class="page-body">
+    <view class="page-section">
+      <view>
+        <image mode='aspectFit' placeholder="誉方元logo"></image>
+      </view>
+      <view class="page_title">誉方元制衣</view>
+      <view class="page_title">校服预订入口</view>
+      <view class="page-section">
+      
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input class="weui-input" type="number" placeholder="请输入邀请码" bindinput="codeInput" value='{{icode}}'/>
+          </view>
+        </view>
+      </view>
+      <view class="weui-btn-area">
+            <button class="weui-btn"  bindtap="goToSchoolPage">进入学校</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+
+

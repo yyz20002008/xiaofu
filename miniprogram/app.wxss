@@ -1,0 +1,17 @@
+/**app.wxss**/
+@import"./styles/iconfont.wxss";
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx 0;
+} 
+
+/* 主题颜色，通过变量来实现 */
+page{
+  --themeColor: #eb4450;
+  font-size: 30rpx;
+  color: #333;
+}

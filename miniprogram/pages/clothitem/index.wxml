@@ -1,0 +1,87 @@
+<!--pages/clothitem/index.wxml-->
+<view>
+<image mode='aspectFit' src="https://user-images.githubusercontent.com/1105915/89417448-b2515a00-d6fc-11ea-8327-75d8722438c6.jpg"></image>
+</view>
+    
+<view>
+          {{clothInfo.cloth_name}}
+</view>
+
+<view>
+  <view class="page-section">
+    <view class="page-section-title">类别</view>
+    <radio-group bindchange="radioChange_cloth">
+          <view class='label'>
+            <label  class="ui-radio {{item.checked==true?'active':''}}" wx:for="{{cloth_item_cur}}" wx:key="cloth_name">
+              <view>
+                <radio  value="{{item.cloth_name}}" checked="{{item.checked}}"/>
+                <text class="text">{{item.cloth_name}}</text> 
+              </view>
+            </label>
+          </view>
+    </radio-group>
+  </view>
+  <view class="page-section">
+      <view class="page-section-title">型号</view>
+        <radio-group bindchange="radioChange">
+          <view class='label'>
+            <label  class="ui-radio {{item.checked==true?'active':''}}" wx:for="{{size}}" wx:key="value">
+                <radio value="{{item.value}}" checked="{{item.checked}}"/>
+                <text class="text">{{item.name}}</text>     
+            </label>
+          </view>
+        </radio-group>
+        <view wx:if="{{showView}}">备注(特体必填,cm):</view>
+        <view class='label' wx:if="{{showView}}">
+        <input placeholder="请依次填写身高;体重;净胸围;净臀围;净腰围;裤长" value="{{cloth_notes}}"></input>
+
+        </view>
+  </view>    
+  <view class="page-section">
+    <view class="page-section-title">性别</view> 
+      <radio-group bindchange="radioChangeGender">
+        <view class='label'>
+          <label class="ui-radio {{item.checked==true?'active':''}}" wx:for="{{gender}}" wx:key="value">
+            <view>
+              <radio value="{{item.value}}" checked="{{item.checked}}"/>
+              <text class="text">{{item.name}}</text> 
+            </view>
+          </label>
+        </view>
+      </radio-group>
+  </view>
+</view>    
+<view>
+            商品详情
+</view>
+
+<view class="btm_tool">
+  <!--
+  <view class="tool_item">
+    <view class="iconfont icon-kefu"></view>
+    <view>客服</view>
+    <button open-type="contact"></button>
+  </view>  
+  <view class="tool_item">
+    <view class="iconfont icon-share"></view>
+    <view>分享</view>
+    <button open-type="share"></button>
+  </view>
+  -->
+  <navigator class="tool_item" url="/pages/cart/index" open-type="switchTab">
+    <view class="iconfont icon-cart"></view>
+    <view>购物车</view>
+  </navigator>
+  <!-- 总价格 -->
+  <view class="total_price_wrap">
+    <view class="total_price">
+      选中价格：<text class="total_price_text">￥{{clothInfo.cloth_price}}</text>
+    </view>
+  <!-- <view>包含运费</view>-->
+  </view>
+  <view class="tool_item btn_cart" bindtap="handleCartAdd">
+    加入购物车
+  </view>
+</view>
+
+

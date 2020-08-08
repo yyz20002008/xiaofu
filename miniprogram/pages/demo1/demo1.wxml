@@ -1,0 +1,67 @@
+<!--pages/demo1/demo1.wxml
+<text>pages/demo1/demo1.wxml</text>
+
+-->
+<!--字符串-->
+<view>{{msg}}</view>
+<!--数字类型-->
+<view>{{num}}</view>
+<!--bool 类型-->
+<view>是否是：{{isGril}}</view>
+<!--4 object-->
+<view>{{person.age}}</view>
+<view>{{person.height}}</view>
+<!--customized-->
+<view data-num="{{num}}">cust</view>
+
+<view>
+	<checkbox checked=" {{isChecked}}"></checkbox>
+</view>
+
+<view>{{1+1}}</view>
+<view>{{'1'+'1'}}</view>
+<view>{{11%2===0 ? '偶数':'奇数'}}</view>
+<view>
+	<view wx:for="{{list}}" wx:key="id">
+		索引：{{index}}
+		--
+		值：{{item.name}}
+	</view>
+</view>
+
+<view>
+	<view>对象循环</view>
+	<view wx:for="{{person}}" 
+  wx:for-index='key' 
+  wx:for-item='value'
+  wx:key='age'>
+		属性：{{key}}
+		--
+		值：{{value}}
+	</view>
+</view>
+
+<view>
+	<block wx:for="{{list}}" wx:key="id"
+  class="my_list">
+		索引：{{index}}
+		--
+		值：{{item.name}}
+	</block>
+</view>
+
+<view>
+  <view>条件渲染</view>
+  <view wx:if="{{true}}">显示</view>
+  <view wx:if="{{false}}">隐藏</view>
+  <view wx:if="{{false}}">1</view>
+  <view wx:elif="{{false}}">2</view>
+  <view wx:else>3</view>
+
+  <view>-----------------------</view>
+  <view hidden>隐藏1</view>
+  <view hidden="{{False}}">隐藏2</view>
+  <view>-----------000------------</view>
+   <view wx:if="{{false}}">隐藏3</view>
+    <view hidden style="display:flex">隐藏4</view>
+</view>

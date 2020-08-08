@@ -1,0 +1,76 @@
+
+ <!-- 收货地址 -->
+<view class="revice_address_row">
+  <view class="address_title">收货地址</view>
+  <!-- 收货地址不存在 -->
+  <view class="address_btn" wx:if="{{!address.userName}}">
+    <button bindtap="handleChooseAddress" plain type="primary">获取收货地址</button>
+  </view>
+  <!-- 收货地址存在 -->
+  <view class="user_info_row" wx:else>
+    <view class="user_info">
+      <view>{{address.userName}}</view>
+      <view>{{address.all}}</view>
+    </view>
+    <view class="user_phone">{{address.telNumber}}</view>
+  </view>
+</view>
+<!-- 购物车内容 -->
+<view class="cart_content">
+  <view class="cart_title">购物车</view>
+  <view class="cart_main">
+  <!-- 当cart ==0 显示提示 -->
+    <block wx:if="{{cart.length!==0}}">
+      <view class="cart_item" wx:for="{{cart}}"  wx:key="cloth_id"
+    >
+      <!-- 复选框 -->
+        <view class="cart_chk_wrap" >
+          <checkbox-group data-id="{{item.cloth_id}}" bindchange="handleItemChange">
+            <checkbox checked="{{item.checked}}"></checkbox>
+          </checkbox-group>
+        </view>
+        <!-- 商品信息 -->
+        <navigator class="cart_img_wrap">
+          <image mode="widthFix" src="https://user-images.githubusercontent.com/1105915/89417448-b2515a00-d6fc-11ea-8327-75d8722438c6.jpg"></image>
+        </navigator>
+        <!-- 商品信息 -->
+        <view class="cart_info_wrap">
+          <view class="goods_name"> {{item.cloth_id}}</view>
+          <view class="goods_price_wrap ">
+              <view class="goods_price">￥{{item.cloth_price}} </view>
+              <view class="cart_num_tool">
+                <view class="num_edit" bindtap="handleItemNumEdit" data-id="{{item.cloth_id}}" data-operation="{{-1}}">-</view>
+                <view class="goods_num">{{item.num}}</view>
+                <view class="num_edit" bindtap="handleItemNumEdit" data-id="{{item.cloth_id}}" data-operation="{{1}}">+</view>
+              </view>
+          </view>
+        </view>
+      </view> 
+    </block>
+    <block wx:else>
+      <image model="widthFix" src="https://user-images.githubusercontent.com/1105915/88992253-e36efc00-d2b0-11ea-912f-13f3fd917397.jpeg">
+      </image>
+    </block>
+  </view>
+</view>
+
+<!-- 底部工具栏 -->
+<view class="footer_tool">
+  <!-- 全选 -->
+  <view class="all_chk_wrap">
+    <checkbox-group bindchange="handleItemAllCheck">
+      <checkbox checked="{{allChecked}}">全选</checkbox>
+    </checkbox-group>
+  </view>
+  <!-- 总价格 -->
+  <view class="total_price_wrap">
+    <view class="total_price">
+      合计：<text class="total_price_text">￥{{totalPrice}}</text>
+    </view>
+   <!-- <view>包含运费</view>-->
+  </view>
+  <!-- 结算 -->
+  <view class="order_pay_wrap" bindtap="handlePay">
+    结算({{totalNum}})
+  </view>
+</view>
