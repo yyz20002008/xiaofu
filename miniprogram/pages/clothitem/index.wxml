@@ -1,16 +1,23 @@
 <!--pages/clothitem/index.wxml-->
-<view>
-<image mode='aspectFit' src="https://user-images.githubusercontent.com/1105915/89417448-b2515a00-d6fc-11ea-8327-75d8722438c6.jpg"></image>
-</view>
-    
-<view>
-          {{clothInfo.cloth_name}}
+<view class="detail_swiper">
+  <swiper autoplay indicator-dots circular>
+    <swiper-item 
+    wx:for="{{cloth_img}}" 
+    wx:key="cloth_img"
+   >
+      <image mode="widthFix" src="{{item}}"></image>
+    </swiper-item>
+  </swiper>
 </view>
 
-<view>
-  <view class="page-section">
-    <view class="page-section-title">类别</view>
-    <radio-group bindchange="radioChange_cloth">
+<view class="goods_name_row">    
+  <view class="goods_name">
+            {{clothInfo.cloth_title}}
+  </view>
+</view>
+<view class="goods_info">
+    <view class="goods_info_title">类别</view>
+    <radio-group bindchange="radioChange_cloth" class="goods_info_content">
           <view class='label'>
             <label  class="ui-radio {{item.checked==true?'active':''}}" wx:for="{{cloth_item_cur}}" wx:key="cloth_name">
               <view>
@@ -20,9 +27,8 @@
             </label>
           </view>
     </radio-group>
-  </view>
-  <view class="page-section">
-      <view class="page-section-title">型号</view>
+
+      <view class="goods_info_title">型号</view>
         <radio-group bindchange="radioChange">
           <view class='label'>
             <label  class="ui-radio {{item.checked==true?'active':''}}" wx:for="{{size}}" wx:key="value">
@@ -33,12 +39,10 @@
         </radio-group>
         <view wx:if="{{showView}}">备注(特体必填,cm):</view>
         <view class='label' wx:if="{{showView}}">
-        <input placeholder="请依次填写身高;体重;净胸围;净臀围;净腰围;裤长" value="{{cloth_notes}}"></input>
+        <input placeholder="请依次填写身高;体重;净胸围;净臀围;净腰围;裤长" value="{{cloth_notes}}" bindinput="bindinput"></input>
+        </view>    
 
-        </view>
-  </view>    
-  <view class="page-section">
-    <view class="page-section-title">性别</view> 
+    <view class="goods_info_title">性别</view> 
       <radio-group bindchange="radioChangeGender">
         <view class='label'>
           <label class="ui-radio {{item.checked==true?'active':''}}" wx:for="{{gender}}" wx:key="value">
@@ -50,9 +54,16 @@
         </view>
       </radio-group>
   </view>
-</view>    
-<view>
-            商品详情
+ 
+<view class="goods_info_details"> 
+  <view class="goods_info_details_title">商品详情</view>
+  <view class="goods_info_details_content">
+    <view>新生标配包括2套秋装2套夏装.已在入学时统一付款，此处仅进行尺码收集，价格为0.</view>
+     <view>请根据下面的尺码指南选择.</view>
+     <view>特体请务必填写详细尺寸信息.</view>
+     <image ></image>
+
+  </view>
 </view>
 
 <view class="btm_tool">
@@ -69,7 +80,10 @@
   </view>
   -->
   <navigator class="tool_item" url="/pages/cart/index" open-type="switchTab">
-    <view class="iconfont icon-cart"></view>
+    
+    <view wx:if="{{cart_num==0}}"></view>
+    <view class="remind-num" wx:else>{{cart_num}}</view>
+    <view class="iconfont icon-cart" ></view>
     <view>购物车</view>
   </navigator>
   <!-- 总价格 -->

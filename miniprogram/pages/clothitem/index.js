@@ -11,6 +11,10 @@ Page({
    */
   data: {
     showView:false,
+    cloth_img:[
+      "https://user-images.githubusercontent.com/1105915/89417449-b2515a00-d6fc-11ea-9049-767ceecc82d0.jpg",
+      "https://user-images.githubusercontent.com/1105915/89417448-b2515a00-d6fc-11ea-8327-75d8722438c6.jpg"
+    ],
     cloth_item_cur:[],
     size: [
       {value: 'S-1', name: 'S-1'},
@@ -25,10 +29,11 @@ Page({
       {value: '特体', name: '特体'}
     ],
     gender: [
-      {value: 'male',name:'男'},
-      {value: 'female',name:'女'}
+      {value: '男',name:'男'},
+      {value: '女',name:'女'}
     ],
     clothInfo:{
+      cloth_title:'',
       cloth_id: '',
       cloth_name:'',
       cloth_size:'',
@@ -39,9 +44,9 @@ Page({
       checked:false
 
     },
-    
+    cart_num:0
   },
-  
+  //选择size
   radioChange(e){
     const size = this.data.size;
     for (let i = 0; i < size.length; ++i) {
@@ -49,13 +54,16 @@ Page({
       if (size[i].checked ==true){
         this.setData({
           'clothInfo.cloth_size': size[i].value
+          
         })
       } 
     }
     console.log(e.detail.value);
     if(e.detail.value=='特体'){
       this.setData({
-        showView: true
+        showView: true,
+        
+
       });
     }
     else{
@@ -66,6 +74,13 @@ Page({
     this.setData({
       size: size
     });
+  },
+  //输入notes bindinput
+  bindinput(e){
+    console.log(e.detail.value);
+    this.setData({
+    'clothInfo.cloth_notes': e.detail.value
+  })
   },
   radioChangeGender(f) {
     //console.log('radio发生changeGender事件，携带value值为：', f.detail.value)
@@ -102,15 +117,16 @@ Page({
   onLoad: function(options) {
     const{cloth_id}=options;
     //console.log(cloth_id);
-    const{cloth_name}=options;
+    const{cloth_title}=options;
     const{cloth_grade}=options;
     this.setData({
       clothInfo: {
         cloth_id:cloth_id,
-        cloth_name:cloth_name,
         cloth_grade:cloth_grade,
-        cloth_price:0
-      }
+        cloth_price:0,
+        cloth_title:cloth_title
+      },
+      
     })
     const cur_sch_id=wx.getStorageSync('school')[0]._id;
     console.log(cur_sch_id);
@@ -137,17 +153,18 @@ Page({
       }
     }
 
-    
+    this.scanCart(this);
   },
   
   onShow: function(f) {
-    
+    this.scanCart(this);
   },
 
   handleCartAdd(){
     let cart=wx.getStorageSync('cart')||[];
     //console.log(this.data.clothInfo);
-    let index=cart.findIndex((v)=>v.cloth_id===this.data.clothInfo.cloth_id);
+    let cloth_long_id=this.data.clothInfo.cloth_grade+this.data.clothInfo.cloth_name+this.data.clothInfo.cloth_size;
+    let index=cart.findIndex((v)=>(v.cloth_grade+v.cloth_name+v.cloth_size)===(cloth_long_id));
     console.log(cart);
     if (index===-1){
       this.data.clothInfo.num=1;
@@ -165,6 +182,25 @@ Page({
       mask:true,
 
     })
-  }
-    
+    this.scanCart(this);
+  },
+  scanCart: function (that) {
+    //我把购物车里面的数据都塞到了缓存里，取名cart,任何一项修改购物车的行为，都会先取购物车的缓存，在重新更新缓存里的购物车参数
+    //购物车
+      var cart = wx.getStorageSync("cart");
+      //统计购物车商品的总数量
+      var cartnumber = 0; //购物车菜品的一共的数量      
+      for (var index in cart) {
+          cartnumber += cart[index].num
+      }
+      if (cart.length) {   //判断购物车的数量个数，购物车如果为空就走else
+        this.setData({
+          cart_num:cartnumber				//通过编译，将购物车总数量放到这里
+        })
+      } else {//购物车为空
+        this.setData({
+          cart_num:0				
+        })
+      }
+    }
 })

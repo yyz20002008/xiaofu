@@ -21,8 +21,7 @@
   <view class="cart_main">
   <!-- 当cart ==0 显示提示 -->
     <block wx:if="{{cart.length!==0}}">
-      <view class="cart_item" wx:for="{{cart}}"  wx:key="cloth_id"
-    >
+      <view class="cart_item" wx:for="{{cart}}"  wx:key="cloth_id">
       <!-- 复选框 -->
         <view class="cart_chk_wrap" >
           <checkbox-group data-id="{{item.cloth_id}}" bindchange="handleItemChange">
@@ -31,7 +30,7 @@
         </view>
         <!-- 商品信息 -->
         <navigator class="cart_img_wrap">
-          <image mode="widthFix" src="https://user-images.githubusercontent.com/1105915/89417448-b2515a00-d6fc-11ea-8327-75d8722438c6.jpg"></image>
+          <image mode="aspectFit" src="https://user-images.githubusercontent.com/1105915/89417448-b2515a00-d6fc-11ea-8327-75d8722438c6.jpg"></image>
         </navigator>
         <!-- 商品信息 -->
         <view class="cart_info_wrap">
@@ -48,7 +47,7 @@
       </view> 
     </block>
     <block wx:else>
-      <image model="widthFix" src="https://user-images.githubusercontent.com/1105915/88992253-e36efc00-d2b0-11ea-912f-13f3fd917397.jpeg">
+      <image model="aspectFit" src="">
       </image>
     </block>
   </view>

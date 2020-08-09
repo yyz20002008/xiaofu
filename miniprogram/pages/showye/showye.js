@@ -43,5 +43,8 @@ Page({
   },
   clickButton: function(e){
     console.log("邀请码：" + this.data.icode );
+  },
+  onShow(){
+    
   }
 })

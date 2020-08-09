@@ -3,10 +3,66 @@
 page{
 padding-bottom: 90rpx;
 }
+/* 轮播图 */
+.detail_swiper swiper{
+  height: 90vw;
+  text-align: center;
+}
+.detail_swiper image{
+  width: 60%;
+}
+
 input{
   font-size: 30rpx;
   width: 700rpx;
 }
+/* 商品描述 */
+.goods_name_row{
+  padding: 10rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  display: flex;
+  border-bottom: 5rpx solid #eee;
+}
+
+.goods_name_row .goods_name{
+  flex: 5;
+  display: flex;
+  align-items: center;
+  padding-right: 10rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-weight: bold;
+}
+.goods_info{
+
+}
+.goods_info_title{
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  font-weight: bold;
+  padding: 10rpx;
+}
+.goods_info_details{
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  border-top: 5rpx solid #eee;
+}
+.goods_info_details_title{
+  font-weight: bold;
+  padding: 10rpx;
+}
+
+
+.goods_info_details_content{
+  color: #666;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  font-size: larger;
+}
+
 /*
 底部工具栏
 */
@@ -27,7 +83,7 @@ input{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 30rpx;
+  font-size: 25rpx;
   position: relative;
 }
 button{
@@ -60,17 +116,31 @@ button{
   flex-direction: column;
   padding-right: 20rpx;
 }
-.total_price_wrap .total_price{
-  font-size: 32rpx;
-}
 .total_price_wrap .total_price_text{
   color: var(--themeColor);
   font-weight: bold;
   font-size: 32rpx;
 }
-
+.remind-num{
+	border-radius: 50%;
+	position: absolute;
+	top: 5rpx;
+	right: 50rpx;
+	font-size: 20rpx;
+	/*padding: 4rpx 15rpx;*/
+	/*align-items: center;*/
+	text-align: center;
+ 
+	width: 30rpx;
+	line-height: 30rpx;
+	height: 30rpx;
+	color: #fff;
+	z-index: 100;
+  background-color:red;
+  
+}
 /*
-radio
+radio button
 */
 .ui-radio radio,.ui-radio checkbox {
   display: none;
@@ -96,10 +166,10 @@ radio
 }
 
 .ui-radio.active{
-  background-color: #1AAD19;
+  background-color: var(--themeColor);
   color: #fff;
   border-radius: 5px;
-  border: 1px solid #1AAD19;
+  border: 1px solid var(--themeColor);
   width: 160rpx;
   height: 70rpx;
   text-align: center;
