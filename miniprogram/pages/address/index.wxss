@@ -1,0 +1,73 @@
+/* pages/address/index.wxss */
+page{
+  display: block;  
+  min-height: 100%;  
+  background-color:#f6f6f6;  
+  font-size: 30rpx;
+  color:#353535;
+}
+.container{
+  margin-top: 20rpx;
+  background-color: #fff;
+  border-bottom:1rpx solid #e0e0e0;
+  display: flex;
+}
+
+/* 地址信息 */
+.item{
+  flex:6;
+  padding:10rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width:90%;
+  border-bottom:1rpx solid #e0e0e0;
+}
+.address{
+
+}
+.name{
+
+}
+.tel{
+
+}
+.eidt{
+  
+}
+
+
+
+
+/* 新增地址 */
+.add{
+  width:100%;  
+  height: 106rpx;
+  background-color:#fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding:15rpx 15rpx 30rpx 40rpx;
+  border-top:1rpx solid #e0e0e0;
+}
+.add image{
+  width:40rpx;
+  height: 40rpx;
+  margin-top:15rpx;
+  margin-right:20rpx;
+}
+.add .right{
+  width:25rpx;
+  float:right;
+  margin-right:20rpx;
+  padding-top:15rpx;
+  color:#e0e0e0;
+}
+.text{
+  float:left;
+  margin-top:20rpx;
+}
+.left{
+  padding-top: 5rpx;
+  float:left;
+}

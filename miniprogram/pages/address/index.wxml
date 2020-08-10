@@ -1,0 +1,19 @@
+<!--pages/address/index.wxml-->
+<view class='container'>
+  <view class = "item" wx:for="{{list}}" wx:key="index" wx:for-index="index" bindtap='select'>
+    <view class='name' >学生姓名：{{item.student_name}}</view>
+    <view class='name' >年级：{{item.student_class}}</view>
+    <view class='name' >收件人：{{item.receiver}}</view>
+    <view class='tel' >手机：{{item.phone}}</view>
+    <view class='address'>地址：{{item.address}}</view>
+    <view class='iconfont icon-icon_edit'  data-index='{{index}}' bindtap = "edit"></view>
+  </view>
+  
+</view>
+
+
+<view class = "add" bindtap = "addAddre">
+	<image  class = "left" src = "" mode = "widthFix" />
+  <view class = "text">新增个人地址</view>
+  <image class="right" src = "" mode = "widthFix" />
+</view>

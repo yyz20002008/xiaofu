@@ -86,6 +86,10 @@ input{
   font-size: 25rpx;
   position: relative;
 }
+.tool_item .iconfont{
+  font-size: 44rpx;
+}
+
 button{
   position: absolute;
   top: 0;
@@ -121,16 +125,16 @@ button{
   font-weight: bold;
   font-size: 32rpx;
 }
+/*CART DOT*/
 .remind-num{
 	border-radius: 50%;
 	position: absolute;
 	top: 5rpx;
-	right: 50rpx;
+	right: 55rpx;
 	font-size: 20rpx;
 	/*padding: 4rpx 15rpx;*/
 	/*align-items: center;*/
 	text-align: center;
- 
 	width: 30rpx;
 	line-height: 30rpx;
 	height: 30rpx;

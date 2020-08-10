@@ -22,9 +22,7 @@ Page({
     this.setData({address});
     this.setCart(cart);
     //update cartreddot
-    this.scanCart(this)
-  
- 
+    this.scanCart(this);
   },
     async handleChooseAddress(){
       try {

@@ -44,7 +44,8 @@ Page({
       checked:false
 
     },
-    cart_num:0
+    cart_num:0,
+    
   },
   //选择size
   radioChange(e){
@@ -58,12 +59,11 @@ Page({
         })
       } 
     }
-    console.log(e.detail.value);
+    //console.log(e.detail.value);
+    //特体显示inputtext
     if(e.detail.value=='特体'){
       this.setData({
         showView: true,
-        
-
       });
     }
     else{
@@ -151,8 +151,7 @@ Page({
         })
         break;
       }
-    }
-
+    } 
     this.scanCart(this);
   },
   
@@ -163,8 +162,15 @@ Page({
   handleCartAdd(){
     let cart=wx.getStorageSync('cart')||[];
     //console.log(this.data.clothInfo);
-    let cloth_long_id=this.data.clothInfo.cloth_grade+this.data.clothInfo.cloth_name+this.data.clothInfo.cloth_size;
-    let index=cart.findIndex((v)=>(v.cloth_grade+v.cloth_name+v.cloth_size)===(cloth_long_id));
+    let cloth_long_id=this.data.clothInfo.cloth_title
+                      +this.data.clothInfo.cloth_grade
+                      +this.data.clothInfo.cloth_name
+                      +this.data.clothInfo.cloth_size
+                      +this.data.clothInfo.cloth_gender;
+    this.setData({
+      'clothInfo.cloth_id':cloth_long_id
+    })
+    let index=cart.findIndex((v)=>(v.cloth_id)===(cloth_id));
     console.log(cart);
     if (index===-1){
       this.data.clothInfo.num=1;
@@ -173,20 +179,18 @@ Page({
     }
     else{
       cart[index].num++;
-
     }
     wx.setStorageSync('cart', cart);
     wx.showToast({
       title: '加入成功',
       icon:'success',
       mask:true,
-
     })
+    //更新cartDot
     this.scanCart(this);
   },
   scanCart: function (that) {
     //我把购物车里面的数据都塞到了缓存里，取名cart,任何一项修改购物车的行为，都会先取购物车的缓存，在重新更新缓存里的购物车参数
-    //购物车
       var cart = wx.getStorageSync("cart");
       //统计购物车商品的总数量
       var cartnumber = 0; //购物车菜品的一共的数量      

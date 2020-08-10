@@ -1,0 +1,48 @@
+<!--pages/add_address/index.wxml-->
+<!-- 信息部分开始 --> 
+<form bindsubmit="saveAddr" >
+  <view class = "info">
+    <!-- 姓名部分 -->
+    <view class = "item">
+      <text>学生姓名</text>
+      <view class = "right">
+      <input type="text" name = "student_name" placeholder="请填写学生姓名"  value="{{list.student_name}}" />
+      </view>
+    </view>
+    <!-- 年级部分 -->
+    <view class = "item">
+      <text>学生年级</text>
+      <view class = "right">
+      <input type="text" name = "student_class" placeholder="请填写学生年级，2020级高中，etc."  value="{{list.student_class}}" />
+      </view>
+    </view>
+    <!-- 收货人 -->
+    <view class = "item">
+      <text>收货人姓名</text>
+      <view class = "right">
+      <input type="text" name = "receiver" placeholder="请填写收货人姓名"  value="{{list.receiver}}" />
+      </view>
+    </view>
+
+    <!-- 电话部分 -->
+    <view class = "item">
+      <text>电话</text>
+      <view class = "right">
+      <input name="phone" type="number" placeholder="请填写收货手机"  value="{{list.phone}}"/>
+      </view>
+    </view>
+
+    <!-- 详细地址部分 -->
+    <view class = "item">
+      <text>详细地址</text>
+      <view class = "right">
+      <input name="address" type="text" placeholder="若在学校取货可仅填写学校名字"  value="{{list.address}}" />
+      </view>
+    </view>
+  </view>
+  <!-- 信息部分结束 -->
+  <view class='save'>
+     <button class="savebt" formType="submit" hover-class="none">保存</button>
+  </view>
+  <view class="delete" bindtap='delete' hidden='{{tag}}'>删除</view>
+</form>

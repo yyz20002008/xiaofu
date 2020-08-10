@@ -11,6 +11,8 @@
     "pages/pay/index",
     "pages/auth/index",
     "pages/login/index",
+    "pages/address/index",
+    "pages/add_address/index",
     "pages/showye/showye"
     
   ],
