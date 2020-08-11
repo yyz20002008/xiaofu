@@ -1,4 +1,5 @@
 // pages/address/index.js
+import{getSetting,chooseAddress,openSetting,showModal,showToast } from "../../utils/asyncWx.js";
 Page({
 
   /**
@@ -54,24 +55,49 @@ Page({
   },
   //选择地址
   select: function(e){
+    let curAddr=wx.getStorageSync('curAddr')||[];
     //为上一个页面的data赋值
     var pages = getCurrentPages(); // 获取页面栈
     var currPage = pages[pages.length - 1]; // 当前页面
     var prevPage = pages[pages.length - 2]; // 上一个页面
     if (prevPage.__route__ == 'pages/cart/index') {
-      var address = {
-        name: e.currentTarget.dataset.name,
-        address: e.currentTarget.dataset.address,
-        phone: e.currentTarget.dataset.phone,
-        id: e.currentTarget.dataset.id
-      }
+      var address = this.data.list[e.currentTarget.dataset.index]
       console.log("为上一个页面的address赋值",address)
       prevPage.setData({
         address: address
       })
-      /* wx.navigateBack({
+      curAddr=address;
+      wx.setStorageSync('curAddr', curAddr);
+      wx.navigateBack({
         delta: 1
-      }) */
+      }) 
     }
+  },
+  
+  //删除该地址
+  async delete(e){
+    let index = e.currentTarget.dataset.index;
+    console.log(e.currentTarget.dataset);
+    let addr_list=wx.getStorageSync('addrList');
+    //let curAddr=wx.getStorageSync('curAddr');
+    const res=await showModal({content:"请确定要删除地址吗?"})
+    if (res.confirm) {
+        addr_list.splice(index,1);
+        console.log("删除地址成功"); 
+        this.setAddr(addr_list);
+        this.setData({
+          list:addr_list
+        }) 
+        //if(curAddr.)
+        //console.log("目前地址为空"); 
+        //wx.setStorageSync('curAddr', curAddr);
+
+    } 
+
+  },
+  setAddr(addr)
+  {
+    wx.setStorageSync('addrList', addr);
   }
+
 })

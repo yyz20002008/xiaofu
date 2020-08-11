@@ -170,7 +170,7 @@ Page({
     this.setData({
       'clothInfo.cloth_id':cloth_long_id
     })
-    let index=cart.findIndex((v)=>(v.cloth_id)===(cloth_id));
+    let index=cart.findIndex((v)=>(v.cloth_id)===(this.data.clothInfo.cloth_id));
     console.log(cart);
     if (index===-1){
       this.data.clothInfo.num=1;

@@ -11,7 +11,9 @@ Page({
     totalNum:0
   },
   onShow:function(){
-    const address=wx.getStorageSync("address");
+    //如果之前选择了地址 就载入
+    const address=wx.getStorageSync("curAddr")||[];
+    this.setData({address});
     //获取缓存中数据
     const cart=wx.getStorageSync("cart")||[];
     //计算全选
@@ -19,14 +21,14 @@ Page({
     //空数组返回就是true
     //const allChecked=cart.length?cart.every(v=>v.checked):false;
 
-    this.setData({address});
     this.setCart(cart);
     //update cartreddot
     this.scanCart(this);
   },
     async handleChooseAddress(){
+      /*
       try {
-          /* 
+          /*
             wx.getSetting({
               success: (result) => {
                 // console.log(result);
@@ -55,7 +57,8 @@ Page({
               complete:()=>{}
             });
           */
-        
+          //  获取微信地址
+          /*
             const res1=await getSetting();
             const scopeAddress=res1.authSetting["scope.address"];
             if (scopeAddress===false){
@@ -67,6 +70,12 @@ Page({
           }  catch (error) {
             console.log(error);
           }
+          */
+         wx.navigateTo({
+          url: '/pages/address/index'
+        })
+
+
     },
     handleItemChange(e){
       //1.被修改的商品id
@@ -82,6 +91,7 @@ Page({
       // 重新设置数据
       //this.setData({ cart });
       this.setCart(cart);
+      //update cartDot
       this.scanCart(this)
     },
 

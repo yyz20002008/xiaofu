@@ -21,12 +21,12 @@ Page({
    */
   onLoad: function (e) {
     console.log(e.address)
+  
     if (e.address != undefined){
       var list = JSON.parse(e.address);
       this.setData({
         list: list,
-        address: list.address,
-        address_id: list.address_id
+        address: list.address
       })
     }else{
       console.log("不存在传入值")
@@ -37,7 +37,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (e) {
-    console.log(this.data.list);
+    //console.log(this.data.list);
     if (this.data.list != undefined){
       console.log("存在传入值")
       this.setData({
@@ -118,25 +118,4 @@ Page({
       }
     } 
   },
-  //删除该地址
-  delete: function(e){
-    var vm = this;
-    console.log(vm.data.address_id)
-    tools.request(app.globalData.url + "/info/DeleteAddress", 'post', { 'address_id': vm.data.address_id})
-      .then(resp => {
-        console.log("删除地址成功", resp)
-        wx.showToast({
-          title: '删除地址成功',
-          icon: 'success',
-          duration: 1500,
-          success: function () {
-            setTimeout(function () {
-              wx.navigateBack({
-                delta: 1
-              })
-            }, 1500);
-          }
-        })
-      })
-  }
 })
