@@ -166,7 +166,6 @@ radio button
   margin: 10rpx 10rpx;
   white-space:nowrap;
   font-size: 14px;
-  
 }
 
 .ui-radio.active{

@@ -1,21 +1,24 @@
 <!--pages/address/index.wxml-->
 <view class='container'>
-  <view class = "item" wx:for="{{list}}" wx:key="index" wx:for-index="index" data-index="{{index}}" bindtap='select'>
-    <view class='item_select_box'></view>
-    <view class="item_content_box"   >
-      <view class='first_row' >
-        <view class='name' >学生姓名：{{item.student_name}}</view>
-        <view class='name' >年级：{{item.student_class}}</view>
+  <view class = "item" wx:for="{{list}}" wx:key="index" wx:for-index="index" data-index="{{index}}" >
+      <view class='item_select_wrap' bindtap='select'>
+        <view class ="iconfont {{item.checked==true?'icon-checked':'icon-unchecked'}}"></view>
+        <view class="item_content_wrap"   >
+            <view class='first_row' >
+              <view class='name' >学生姓名：{{item.student_name}}</view>
+              <view class='name' >年级：{{item.student_class}}</view>
+            </view>
+            <view class='second_row' >
+              <view class='name' >收件人：{{item.receiver}}</view>
+              <view class='tel' >手机：{{item.phone}}</view>
+            </view>
+            <view class='second_row' >
+              <view class='address'>地址：{{item.address}}</view>
+            </view>
+
+        </view> 
       </view>
-      <view class='second_row' >
-        <view class='name' >收件人：{{item.receiver}}</view>
-        <view class='tel' >手机：{{item.phone}}</view>
-      </view>
-      <view class='second_row' >
-        <view class='address'>地址：{{item.address}}</view>
-      </view>
-    </view>
-    <view class="item_update_box">
+    <view class="item_update_wrap">
       <view class='iconfont icon-edit'  data-index='{{index}}' bindtap = "edit"></view>
       <view class='iconfont icon-delete'  data-index='{{index}}' bindtap = "delete"></view>
     </view>  

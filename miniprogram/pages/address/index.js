@@ -22,10 +22,10 @@ Page({
   ]
   },
   edit: function (e){
-    console.log(this.data.list[e.currentTarget.dataset.index])
+    //console.log(this.data.list[e.currentTarget.dataset.index])
     var address = this.data.list[e.currentTarget.dataset.index]
     wx.navigateTo({
-      url: '/pages/add_address/index?address='+ JSON.stringify(address)
+      url: '/pages/add_address/index?address='+ JSON.stringify(address)+'&&index='+e.currentTarget.dataset.index
     })
   },
 
@@ -55,7 +55,11 @@ Page({
   },
   //选择地址
   select: function(e){
-    let curAddr=wx.getStorageSync('curAddr')||[];
+    console.log('取到了');
+    let list=wx.getStorageSync('addrList')||[];
+    this.setData({
+      "list.checked":true
+    })
     //为上一个页面的data赋值
     var pages = getCurrentPages(); // 获取页面栈
     var currPage = pages[pages.length - 1]; // 当前页面
@@ -71,7 +75,7 @@ Page({
       wx.navigateBack({
         delta: 1
       }) 
-    }
+    } 
   },
   
   //删除该地址
@@ -98,6 +102,6 @@ Page({
   setAddr(addr)
   {
     wx.setStorageSync('addrList', addr);
-  }
-
+  },
+ 
 })

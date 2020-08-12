@@ -12,7 +12,10 @@ page{
   border-bottom:1rpx solid #e0e0e0;
   display: flex;
 }
-
+.iconfont{
+  color: var(--themeColor);
+  font-size: 44rpx;
+}
 /* 地址信息 */
 .item{
   flex:6;

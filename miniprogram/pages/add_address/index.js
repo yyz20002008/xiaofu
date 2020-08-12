@@ -5,15 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tag: true,
-/*     list:{
-      student_name:'',
-      student_class:'',
-      receiver:'',
-      phone:'',
-      address:''
-    } */
-
+    tag: true
   },
 
   /**
@@ -21,15 +13,19 @@ Page({
    */
   onLoad: function (e) {
     console.log(e.address)
-  
+    console.log(e.index)
+    //修改地址的话接传过来的值
     if (e.address != undefined){
       var list = JSON.parse(e.address);
+      let index = JSON.parse(e.index);
+      //传过来的要修改的地址显示在页面
       this.setData({
         list: list,
-        address: list.address
+        curAddrIndex:index
       })
+      //console.log(this.data.curAddrIndex)
     }else{
-      console.log("不存在传入值")
+      console.log("不存在传入值")//新地址
     }
   },
 
@@ -37,17 +33,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (e) {
-    //console.log(this.data.list);
+    console.log(this.data.list);
     if (this.data.list != undefined){
       console.log("存在传入值")
       this.setData({
-        tag:false
+        tag:false//修改地址
       })
+    }else{
+      console.log("不存在传入值")//新地址
     }
   },
   //保存修改地址
   saveAddr: function(e){
-    var  addrList= wx.getStorageSync("addrList")||[];
+    let  addrList= wx.getStorageSync("addrList")||[];
     if (e.detail.value.student_name == "") {
       wx.showModal({
         title: '提示',
@@ -75,12 +73,14 @@ Page({
         content: "请输入您的详细地址"
       })
     }else {
-      console.log(e.detail.value);
       
       if(this.data.tag === true){
-        var address = e.detail.value
+        var address = e.detail.value;
+      
+        console.log(address);
         //address = JSON.stringify(address);
         addrList.push(address);
+        console.log(addrList); 
         //保存新地址
         wx.showToast({
           title: '新增地址成功',
@@ -96,11 +96,10 @@ Page({
         })
         wx.setStorageSync('addrList', addrList);  
       }else{
-        var address = e.detail.value
-        let index=addrList.findIndex((v)=>(v.address)===(e.detail.value.address));
-        if(index===-1){
-          //修改地址
-          addrList[index]=address;
+          var address = e.detail.value;
+          console.log("index:"+this.data.curAddrIndex)
+            //修改地址
+          addrList[this.data.curAddrIndex]=address;
           wx.showToast({
                 title: '修改地址成功',
                 icon: 'success',
@@ -113,9 +112,8 @@ Page({
                   }, 1500);
                 }
           })
-          wx.setStorageSync('addrList', addrList);     
+          wx.setStorageSync('addrList', addrList);    
         }
-      }
     } 
   },
 })
