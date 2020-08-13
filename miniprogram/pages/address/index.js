@@ -21,22 +21,15 @@ Page({
     address:'北京市清华大学家属区3-4-301'}
   ]
   },
-  edit: function (e){
-    //console.log(this.data.list[e.currentTarget.dataset.index])
-    var address = this.data.list[e.currentTarget.dataset.index]
-    wx.navigateTo({
-      url: '/pages/add_address/index?address='+ JSON.stringify(address)+'&&index='+e.currentTarget.dataset.index
-    })
-  },
-
-  /**
+    /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    let list=wx.getStorageSync('addrList');
+    this.setData({
+      list:list
+    }) 
   },
-
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -46,8 +39,7 @@ Page({
       list:list
     }) 
   },
-
-  //增加地址
+  //增加新地址
   addAddre: function () {
     wx.navigateTo({
       url: '/pages/add_address/index'
@@ -55,29 +47,38 @@ Page({
   },
   //选择地址
   select: function(e){
-    console.log('取到了');
-    let list=wx.getStorageSync('addrList')||[];
+    console.log(e.currentTarget.dataset.index);
+    for (let i = 0; i < this.data.list.length; ++i) {
+      this.data.list[i].checked = i == e.currentTarget.dataset.index
+    }
     this.setData({
-      "list.checked":true
-    })
+      list: this.data.list
+    });
+    let address = this.data.list[e.currentTarget.dataset.index]
+    let curAddr=address;
+    wx.setStorageSync('curAddr', curAddr);
+
     //为上一个页面的data赋值
     var pages = getCurrentPages(); // 获取页面栈
     var currPage = pages[pages.length - 1]; // 当前页面
     var prevPage = pages[pages.length - 2]; // 上一个页面
     if (prevPage.__route__ == 'pages/cart/index') {
-      var address = this.data.list[e.currentTarget.dataset.index]
-      console.log("为上一个页面的address赋值",address)
-      prevPage.setData({
-        address: address
-      })
-      curAddr=address;
-      wx.setStorageSync('curAddr', curAddr);
-      wx.navigateBack({
-        delta: 1
-      }) 
+      setTimeout(function () {
+        wx.navigateBack({
+          delta: 1
+        })
+      },1000) 
     } 
   },
-  
+  //编辑
+  edit: function (e){
+    //console.log(this.data.list[e.currentTarget.dataset.index])
+    var address = this.data.list[e.currentTarget.dataset.index]
+    wx.navigateTo({
+      url: '/pages/add_address/index?address='+ JSON.stringify(address)+'&&index='+e.currentTarget.dataset.index
+    })
+  },
+
   //删除该地址
   async delete(e){
     let index = e.currentTarget.dataset.index;

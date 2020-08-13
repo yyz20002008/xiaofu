@@ -73,10 +73,8 @@ Page({
         content: "请输入您的详细地址"
       })
     }else {
-      
       if(this.data.tag === true){
         var address = e.detail.value;
-      
         console.log(address);
         //address = JSON.stringify(address);
         addrList.push(address);
@@ -114,6 +112,9 @@ Page({
           })
           wx.setStorageSync('addrList', addrList);    
         }
+      this.setData({
+        list:addrList
+      })
     } 
   },
 })
