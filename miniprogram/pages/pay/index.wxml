@@ -5,10 +5,12 @@
   <!-- 收货地址存在 -->
   <view class="user_info_row">
     <view class="user_info">
-      <view>{{address.userName}}</view>
-      <view>{{address.all}}</view>
+      <view>{{address.student_name}}</view>
+      <view>{{address.student_class}}</view>
+      <view>{{address.receiver}}</view>
+      <view>{{address.address}}</view>
     </view>
-    <view class="user_phone">{{address.telNumber}}</view>
+    <view class="user_phone">{{address.phone}}</view>
   </view>
 </view>
 <!-- 购物车内容 -->

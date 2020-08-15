@@ -47,6 +47,9 @@ Page({
       }
     ],
   },
+  onLoad(){
+    this.getOrders(type);
+  },
   onShow(){
     const token=wx.getStorageSync('token');
     /* if(!token){
@@ -56,22 +59,35 @@ Page({
       return;
     } */
     //获取当前小程序的页面栈-数组
-    let pages=getCurrentPages();
+    //let pages=getCurrentPages();
     //数组中索引最大的页面是当前页面
-    let currentPage=pages[pages.length-1];
+    //let currentPage=pages[pages.length-1];
     //获取utl上type参数
-    const {type}=currentPage.options;
+    //const {type}=currentPage.options;
     //激活选中标题
-    this.changeTitleByIndex(type-1);
-    //this.getOrders(type);
+   // this.changeTitleByIndex(type-1);
+ 
+    this.setData({
+      orders:wx.getStorageSync('orders')
+    })
   },
   //获取订单列表的方法
   async getOrders(type){
-    const res=await request({url:"/my/orders/all",data:{type}});
-    this.setData({
-      orders:res.orders.map(v=>({...v,create_time_cn:(new Date(v.create_time*1000).toLocaleString())}))
+    //const res=await request({url:"/my/orders/all",data:{type}});
+    //console.log({icode});
+    const testdb = wx.cloud.database({env: 'prod-dbtpz'});
+    const _ = testdb.command
+    testdb.collection('orders').where({
+      // gt 方法用于指定一个 "大于" 条件，此处 _.gt(30) 是一个 "大于 30" 的条件
+      //accessCode: _.eq(parseInt(this.data.icode))
     })
-  
+    .get({
+      success: function(res) {
+        //console.log(res.data)
+        wx.setStorageSync('orders', res.data)
+      }
+    })
+ 
   },
 
   /**

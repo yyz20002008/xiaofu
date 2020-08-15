@@ -94,6 +94,59 @@ Page({
       //update cartDot
       this.scanCart(this)
     },
+         /**
+     ** 乘法函数，用来得到精确的乘法结果
+     ** 说明：javascript的乘法结果会有误差，在两个浮点数相乘的时候会比较明显。这个函数返回较为精确的乘法结果。
+     ** 调用：accMul(arg1,arg2)
+     ** 返回值：arg1乘以 arg2的精确结果
+     **/
+     accMul(arg1, arg2){
+      var m = 0,
+        s1 = arg1.toString(),
+        s2 = arg2.toString();
+      try {
+        m += s1.split(".")[1].length;
+      } catch (e) {}
+      try {
+        m += s2.split(".")[1].length;
+      } catch (e) {}
+      return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
+    },
+    /**
+     ** 加法函数，用来得到精确的加法结果
+     ** 说明：javascript的加法结果会有误差，在两个浮点数相加的时候会比较明显。这个函数返回较为精确的加法结果。
+     ** 调用：accAdd(arg1,arg2)
+     ** 返回值：arg1加上arg2的精确结果
+     **/
+     accAdd(arg1, arg2){
+      var r1, r2, m, c;
+      try {
+        r1 = arg1.toString().split(".")[1].length;
+      } catch (e) {
+        r1 = 0;
+      }
+      try {
+        r2 = arg2.toString().split(".")[1].length;
+      } catch (e) {
+        r2 = 0;
+      }
+      c = Math.abs(r1 - r2);
+      m = Math.pow(10, Math.max(r1, r2));
+      if (c > 0) {
+        var cm = Math.pow(10, c);
+        if (r1 > r2) {
+          arg1 = Number(arg1.toString().replace(".", ""));
+          arg2 = Number(arg2.toString().replace(".", "")) * cm;
+        } else {
+          arg1 = Number(arg1.toString().replace(".", "")) * cm;
+          arg2 = Number(arg2.toString().replace(".", ""));
+        }
+      } else {
+        arg1 = Number(arg1.toString().replace(".", ""));
+        arg2 = Number(arg2.toString().replace(".", ""));
+      }
+      return (arg1 + arg2) / m;
+    },
 
     //设置购物车状态重新计算 底部工具栏
     setCart(cart){
@@ -103,13 +156,14 @@ Page({
       let totalNum=0;
       cart.forEach(v=>{
         if(v.checked){
-          totalPrice+=v.num*v.cloth_price;
+          totalPrice=this.accAdd(this.accMul(v.num,v.cloth_price),totalPrice);
           totalNum+=v.num;
         }
         else{
           allChecked=false;
         }  
       })
+      
       //判断数组为空
       allChecked=cart.length!=0?allChecked:false;
       //重新设置data
@@ -140,18 +194,6 @@ Page({
       const index=cart.findIndex(v=>v.cloth_id===id);
       //判断是否删除
       if(cart[index].num===1&&operation===-1){
-        /* wx.showModal({
-          title: '提示',
-          content: '您确定要删除商品吗？',
-          success: (res)=> {
-            if (res.confirm) {
-              cart.splice(index);
-              this.setCart(cart);
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
-        }) */
         const res=await showModal({content:"您确定要删除商品吗?"})
         if (res.confirm) {
           cart.splice(index,1);
@@ -168,7 +210,7 @@ Page({
     },
     async handlePay(){
       const {address,totalNum}=this.data;
-      if(!address.userName){
+      if(!address.student_name){
         await showToast({title:"您还没有选择收货地址"});
         return;
       }

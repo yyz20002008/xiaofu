@@ -2,9 +2,9 @@
 
 <view class="page-body">
     <view class="page-section" wx:for="{{grade}}" wx:key="grade" wx:for-item="i">
-    <view class="page_section_title"  >{{i}}运动校服</view>
+    <view class="page_section_title"  >{{i.level}}运动校服</view>
       <view class="page_item_wrap">
-        <navigator wx:for="{{class}}" wx:key="class" wx:for-item="j" class="page_img_wrap" url="/pages/clothitem/index?{{school}}&cloth_grade={{i}}&cloth_title={{j}}级{{i}}运动校服">
+        <navigator wx:for="{{i.class}}" wx:key="class" wx:for-item="j" class="page_img_wrap" url="/pages/clothitem/index?{{school}}&cloth_grade={{i.level}}&cloth_title={{j}}级{{i.level}}运动校服">
           <image mode='aspectFit' src="https://user-images.githubusercontent.com/1105915/89417448-b2515a00-d6fc-11ea-8327-75d8722438c6.jpg"></image>
           <view>{{j}}级</view>
         </navigator>

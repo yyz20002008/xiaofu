@@ -1,6 +1,6 @@
 /* pages/showye/showye.wxss */
 
-@import "../../lib/weui.wxss";
+
 
 .page-section{
 justify-items: center;

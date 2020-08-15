@@ -39,7 +39,7 @@
         </radio-group>
         <view wx:if="{{showView}}">备注(特体必填,cm):</view>
         <view class='label' wx:if="{{showView}}">
-        <input placeholder="请依次填写身高;体重;净胸围;净臀围;净腰围;裤长" value="{{cloth_notes}}" bindinput="bindinput"></input>
+        <input placeholder="请依次填写身高;体重;净胸围;净臀围;净腰围;裤长" value="{{cloth_notes}}" bindinput="bindinput">''</input>
         </view>    
 
     <view class="goods_info_title">性别</view> 
@@ -58,7 +58,7 @@
 <view class="goods_info_details"> 
   <view class="goods_info_details_title">商品详情</view>
   <view class="goods_info_details_content">
-    <view>新生标配包括2套秋装2套夏装.已在入学时统一付款，此处仅进行尺码收集，价格为0.</view>
+    <view>新生标配包括2套秋装2套夏装.</view>
      <view>请根据下面的尺码指南选择.</view>
      <view>特体请务必填写详细尺寸信息.</view>
  

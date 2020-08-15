@@ -83,13 +83,13 @@ Page({
         wx.showToast({
           title: '新增地址成功',
           icon: 'success',
-          duration: 1500,
+          duration: 1000,
           success: function () {
             setTimeout(function () {
               wx.navigateBack({
                 delta: 1
               })
-            }, 1500);
+            }, 1000);
           }
         })
         wx.setStorageSync('addrList', addrList);  
@@ -101,13 +101,13 @@ Page({
           wx.showToast({
                 title: '修改地址成功',
                 icon: 'success',
-                duration: 1500,
+                duration: 1000,
                 success: function () {
                   setTimeout(function () {
                     wx.navigateBack({
                       delta: 1
                     })
-                  }, 1500);
+                  }, 1000);
                 }
           })
           wx.setStorageSync('addrList', addrList);    

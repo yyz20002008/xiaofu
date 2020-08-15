@@ -2,8 +2,8 @@
 const cloud = require('wx-server-sdk')
 cloud.init({ 
   traceUser: true,
-  env: 'test-3aahe'
-  
+  //env: 'test-3aahe'
+  env: 'prod-dbtpz'
 })
 // 云函数入口函数
 exports.main = async (event, context) => {

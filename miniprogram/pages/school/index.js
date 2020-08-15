@@ -16,7 +16,7 @@ Page({
    * 一个学校hardcode现在 学校多了之后就是改成动态激活码
    */
   onLoad: function (options) {
-    const testdb = wx.cloud.database({env: 'test-3aahe'});
+    const testdb = wx.cloud.database({env: 'prod-dbtpz'});//env: 'test-3aahe'
     const _ = testdb.command
     testdb.collection('school').where({
       accessCode: _.eq(parseInt(1946320))
@@ -43,11 +43,15 @@ Page({
    */
   onShow: function () {
     const school=wx.getStorageSync('school');
-    console.log(school);
+    //console.log(school[0].grade);
+    var g=[],c=[]
+    for(let i=0;i<school[0].grade.length;i++){
+      g.push(school[0].grade[i]);
+
+    }
     this.setData({
         schoolName:school[0].schoolName,
-        grade:school[0].grade,
-        class:school[0].class
+        grade:g
     })
     this.scanCart(this);
   },

@@ -34,7 +34,7 @@
 
     <!-- 详细地址部分 -->
     <view class = "item">
-      <text>详细地址</text>
+      <text>收货地址</text>
       <view class = "right">
       <input name="address" type="text" placeholder="若在学校取货可仅填写学校名字"  value="{{list.address}}" />
       </view>

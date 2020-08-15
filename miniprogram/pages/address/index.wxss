@@ -86,16 +86,15 @@ page{
 }
 .add .iconfont.icon-add{
   flex:0.5;
-  margin-top:20rpx;
 }
 .add .iconfont.icon-right{
   flex:0.5;
-  margin-top:20rpx;
   padding-right: 10rpx; 
 }
 .text{
   flex:6;
-  margin-top:20rpx;
   font-size: 35rpx;
+  margin-top: 10rpx;
+  align-items: flex-start;
   float: left;
 }

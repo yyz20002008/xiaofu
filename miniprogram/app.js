@@ -9,7 +9,8 @@ App({
         //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
         //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
         //   如不填则使用默认环境（第一个创建的环境）
-        env: 'test-3aahe',
+        //env: 'test-3aahe'
+        env: 'prod-dbtpz',
         traceUser: true,
       })
     }
@@ -66,14 +67,13 @@ App({
         }
       })
     },
-//首先定义了一个方法
-    timer: false,
+
     scanCart: function (that) {
-    //我把购物车里面的数据都塞到了缓存里，取名cart,任何一项修改购物车的行为，都会先取购物车的缓存，在重新更新缓存里的购物车参数
+    //把购物车里面的数据都塞到了缓存里，取名cart,任何一项修改购物车的行为，都会先取购物车的缓存，在重新更新缓存里的购物车参数
     //购物车
       var cart = wx.getStorageSync("cart");
       //统计购物车商品的总数量
-      var cartnumber = 0; //购物车菜品的一共的数量      
+      var cartnumber = 0; //购物车商品数量      
       for (var index in cart) {
           cartnumber += cart[index].num
       }

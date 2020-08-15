@@ -78,9 +78,11 @@ Page({
   //输入notes bindinput
   bindinput(e){
     console.log(e.detail.value);
-    this.setData({
-    'clothInfo.cloth_notes': e.detail.value
-  })
+      this.setData({
+        'clothInfo.cloth_notes': e.detail.value
+      })
+  
+    
   },
   radioChangeGender(f) {
     //console.log('radio发生changeGender事件，携带value值为：', f.detail.value)
@@ -124,13 +126,14 @@ Page({
         cloth_id:cloth_id,
         cloth_grade:cloth_grade,
         cloth_price:0,
-        cloth_title:cloth_title
+        cloth_title:cloth_title,
+        cloth_notes:''
       },
       
     })
     const cur_sch_id=wx.getStorageSync('school')[0]._id;
     console.log(cur_sch_id);
-    const testdb = wx.cloud.database({env: 'test-3aahe'});
+    const testdb = wx.cloud.database({env: 'prod-dbtpz'});
     const _ = testdb.command
     testdb.collection('cloth').where({
       school_id:parseInt(cur_sch_id),
@@ -163,10 +166,9 @@ Page({
     let cart=wx.getStorageSync('cart')||[];
     //console.log(this.data.clothInfo);
     let cloth_long_id=this.data.clothInfo.cloth_title
-                      +this.data.clothInfo.cloth_grade
                       +this.data.clothInfo.cloth_name
-                      +this.data.clothInfo.cloth_size
-                      +this.data.clothInfo.cloth_gender;
+                      +this.data.clothInfo.cloth_gender
+                      +this.data.clothInfo.cloth_size;
     this.setData({
       'clothInfo.cloth_id':cloth_long_id
     })
