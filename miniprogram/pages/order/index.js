@@ -48,7 +48,8 @@ Page({
     ],
   },
   onLoad(){
-    this.getOrders(type);
+
+    this.getOrders();
   },
   onShow(){
     const token=wx.getStorageSync('token');
@@ -58,28 +59,103 @@ Page({
       })
       return;
     } */
+    //getAllorder list
+    
+
     //获取当前小程序的页面栈-数组
-    //let pages=getCurrentPages();
+    let pages=getCurrentPages();
     //数组中索引最大的页面是当前页面
-    //let currentPage=pages[pages.length-1];
-    //获取utl上type参数
-    //const {type}=currentPage.options;
+    let currentPage=pages[pages.length-1];
+    //获取url上type参数
+    const {type}=currentPage.options;
+    console.log(type);
     //激活选中标题
-   // this.changeTitleByIndex(type-1);
- 
-    this.setData({
-      orders:wx.getStorageSync('orders')
-    })
+    this.changeTitleByIndex(type-1);
+    this.getCurOrder(type);
+  },
+  //显示分类订单
+  getCurOrder(type){
+    var orderList=wx.getStorageSync('orders')
+    if(type==1){
+      this.setData({
+        orders:orderList
+      })
+    }
+    else if(type==2){
+      this.setData({
+        orders:wx.getStorageSync('orders')[0]
+      })
+      let curOrder=[];
+      for(let i=0;i<orderList.length;i++){
+        if(orderList[i].status=='待付款'){
+          curOrder.push(orderList[i])
+        }
+      }
+      this.setData({
+        orders:curOrder
+      })
+    }
+    else if(type==3){
+      this.setData({
+        orders:wx.getStorageSync('orders')[0]
+      })
+      let curOrder=[];
+      for(let i=0;i<orderList.length;i++){
+        if(orderList[i].status=='已付款'){
+          curOrder.push(orderList[i])
+        }
+      }
+      this.setData({
+        orders:curOrder
+      })
+    }
+    else if(type==4){
+      this.setData({
+        orders:wx.getStorageSync('orders')[0]
+      })
+      let curOrder=[];
+      for(let i=0;i<orderList.length;i++){
+        if(orderList[i].status=='已发货'){
+          curOrder.push(orderList[i])
+        }
+      }
+      this.setData({
+        orders:curOrder
+      })
+    }
+    else if(type==5){
+      this.setData({
+        orders:wx.getStorageSync('orders')[0]
+      })
+      let curOrder=[];
+      for(let i=0;i<orderList.length;i++){
+        if(orderList[i].status=='售后'){
+          curOrder.push(orderList[i])
+        }
+      }
+      this.setData({
+        orders:curOrder
+      })
+    }
+    else{
+      this.setData({
+        orders:[]
+      })
+    }
+    
   },
   //获取订单列表的方法
-  async getOrders(type){
+  async getOrders(){
     //const res=await request({url:"/my/orders/all",data:{type}});
     //console.log({icode});
+   
+    this.getOpenid();
+    var cur_openid=wx.getStorageSync('openid');
     const testdb = wx.cloud.database({env: 'prod-dbtpz'});
     const _ = testdb.command
     testdb.collection('orders').where({
       // gt 方法用于指定一个 "大于" 条件，此处 _.gt(30) 是一个 "大于 30" 的条件
-      //accessCode: _.eq(parseInt(this.data.icode))
+      _openid: _.eq(cur_openid)
     })
     .get({
       success: function(res) {
@@ -87,7 +163,7 @@ Page({
         wx.setStorageSync('orders', res.data)
       }
     })
- 
+    
   },
 
   /**
@@ -106,12 +182,31 @@ Page({
    * 子向父转递数据
    * 标题点击事件
    */
-
   handleItemChange(e) {
     //获取被点击标题索引
     const { index } = e.detail;
     this.changeTitleByIndex(index);
     //重新发送请求 type=1 index=0
-    //this.getOrders(index+1);
-  }
+    this.getCurOrder(index+1);
+  },
+  //
+  goToOrderDetails(e){
+    console.log(this.data.orders[e.currentTarget.dataset.index]);
+    var curOrder = this.data.orders[e.currentTarget.dataset.index];
+    wx.navigateTo({
+      url: '/pages/order_details/index?curOrder='+ JSON.stringify(curOrder)+'&&index='+e.currentTarget.dataset.index
+    });
+  },
+  // 获取用户openid
+ getOpenid() {
+  let that = this;
+  wx.cloud.callFunction({
+   name: 'getOpenid',
+   complete: res => {
+    console.log('云函数获取到的openid: ', res.result.openid)
+    var openid = res.result.openid;
+    wx.setStorageSync('openid', openid);
+   }
+  })
+ }
 })

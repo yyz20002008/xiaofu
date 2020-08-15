@@ -2,7 +2,7 @@
   <view class="order_main">
     <view class="order_item"
     wx:for="{{orders}}"
-    wx:key="order_id">
+    wx:key="_id" bindtap="goToOrderDetails" data-index="{{index}}">
       <view class="order_no_row">
         <view class="order_no_text">订单号</view>
         <view class="order_no_value">{{item._id}}</view>
