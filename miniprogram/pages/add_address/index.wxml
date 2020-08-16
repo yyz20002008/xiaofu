@@ -44,5 +44,5 @@
   <view class='save'>
      <button class="savebt" formType="submit" hover-class="none">保存</button>
   </view>
-  <view class="delete" bindtap='delete' hidden='{{tag}}'>删除</view>
+  <!--<view class="delete" bindtap='delete' hidden='{{tag}}'>删除</view>-->
 </form>

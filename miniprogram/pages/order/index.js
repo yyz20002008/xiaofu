@@ -48,20 +48,22 @@ Page({
     ],
   },
   onLoad(){
-
     this.getOrders();
+    console.log(this.data.orders);
+    console.log('在onLoad');
   },
   onShow(){
-    const token=wx.getStorageSync('token');
+    //const token=wx.getStorageSync('token');
     /* if(!token){
       wx.navigateTo({
         url: '/pages/auth/index'
       })
       return;
     } */
+    console.log('在onShow');
     //getAllorder list
+   
     
-
     //获取当前小程序的页面栈-数组
     let pages=getCurrentPages();
     //数组中索引最大的页面是当前页面
@@ -142,13 +144,13 @@ Page({
         orders:[]
       })
     }
-    
+    console.log('在getCurOrder');
   },
   //获取订单列表的方法
-  async getOrders(){
+  getOrders(){
     //const res=await request({url:"/my/orders/all",data:{type}});
     //console.log({icode});
-   
+
     this.getOpenid();
     var cur_openid=wx.getStorageSync('openid');
     const testdb = wx.cloud.database({env: 'prod-dbtpz'});
@@ -163,7 +165,9 @@ Page({
         wx.setStorageSync('orders', res.data)
       }
     })
-    
+    this.setData({
+      orders: wx.getStorageSync('orders')
+    })
   },
 
   /**

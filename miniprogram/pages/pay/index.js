@@ -56,14 +56,16 @@ Page({
     console.log("订单号: "+goodsnum);
     const subMchId = '1601666118'; // 微信支付商户号,必填
     //把商品信息写进body
-    var good_info;
+    var good_info='';
     for(let i=0;i<cart.length;i++){
       good_info+=cart[i].cloth_title+';';
     } 
-    var good_details;
+    console.log(good_info)
+    var good_details='';
     for(let j=0;j<cart.length;j++){
-      good_details+=cart[j].cloth_id+'x'+cart[j].num+';';
+      good_details+=cart[j].cloth_id+' x '+cart[j].num+';';
     }
+    console.log(good_details);
     const body = good_info;//订单名称
     const details = good_details;//订单详情
     const inputPayVal = totalPrice * 100;//系统是用分开始计算
@@ -115,7 +117,7 @@ Page({
               title: '支付失败',
               success: () => console.log('success'),
               fail: () => console.log('failure'),
-            })
+            });
           },
         });
       })
@@ -159,11 +161,11 @@ Page({
       },
       success: function(res) {
         // res 是一个对象
-        console.log(res)
+        console.log("订单添加成功")
       }
     }) 
     wx.setStorageSync("cart",[]);//清空购物车
-    wx.redirectTo({url: '../order/index',})//跳转到order页面
+    wx.redirectTo({url: '../order/index?type=1',})//跳转到order页面要给个参数要不没order list
   },
   // 随机生成商品订单号,订单号不能重复
   _getGoodsRandomNumber() {

@@ -17,7 +17,7 @@ Page({
     console.log(e.index)
     //传过来的要修改的地址显示在页面
     this.setData({
-      curOrder: e.curOrder,
+      curOrder: wx.getStorageSync('orders')[e.index],
       curOrderIndex:e.index
     })
     

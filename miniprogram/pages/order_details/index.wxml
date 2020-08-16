@@ -1,2 +1,46 @@
 <!--pages/order_details/index.wxml-->
-<text>pages/order_details/index.wxml</text>
+<view class = "item">
+        <view class="order_item">
+        <!--订单头部-->
+            <view class='order_no_row'>
+              <view class='order_no_text'>订单号</view>  
+              <view class='order_no_value'>{{curOrder._id}}</view> 
+            </view> 
+            <view class='order_no_row'>
+              <view class='order_no_text'>下单时间</view>  
+              <view class='order_no_value'>{{curOrder.orderDate}}</view> 
+            </view>  
+             <view class='order_no_row'>
+              <view class='order_no_text'>订单状态</view>  
+              <view class='order_no_value'>{{curOrder.status}}</view> 
+            </view>    
+        </view>   
+      <!--Product-->
+        <view class='order_item' >订单内容
+            <view class='order_no_row' wx:for="{{curOrder.product}}" wx:key="_id" wx:for-index="index"   >
+                <view class='order_no_value' >{{item.cloth_id}}</view>  
+                <view class='order_no_value' >
+                  <view class='order_price_value' >￥{{item.cloth_price}}</view>
+                  <view class='order_no_text' >x{{item.num}}</view>
+                </view>
+            </view>
+            <view class='order_no_row' >
+            <view class='order_no_text' >总价</view>  
+            <view class='order_price_value' >￥{{curOrder.totalPrice}}</view>  
+          </view>
+        </view> 
+      <!--Address-->
+        <view class='order_item' >地址 
+          <view class="order_no_row"   >
+            <view class='name' >学生姓名:{{curOrder.address.student_name}}</view>
+            <view class='name' >年级：{{curOrder.address.student_class}}</view>
+          </view> 
+          <view class="order_no_row"   >
+            <view class='name' >收件人：{{curOrder.address.receiver}}</view>
+            <view class='tel' >手机：{{curOrder.address.phone}}</view>
+          </view> 
+          <view class="order_no_row" >
+                <view class='address'>地址：{{curOrder.address.address}}</view>
+          </view> 
+        </view> 
+</view>
