@@ -9,17 +9,23 @@
   <!-- 收货地址存在 -->
   <view class="user_info_row" wx:else bindtap="handleChooseAddress">
     <view class="user_info">
-      <view>{{address.student_name}}</view>
-      <view>{{address.student_class}}</view>
-      <view>{{address.receiver}}</view>
-      <view>{{address.address}}</view>
+      <view class="row"> 
+        <view>学生：{{address.student_name}}</view>
+       <view>年级：{{address.student_class}}</view>
+      </view>
+      <view class="row"> 
+        <view>收件人：{{address.receiver}}</view>
+        <view class="user_phone">手机： {{address.phone}}</view>
+       </view>
+      <view class="row"> 
+        <view>收货地址：{{address.address}}</view>
+      </view>
     </view>
-    <view class="user_phone">{{address.phone}}</view>
+    
   </view>
 </view>
 <!-- 购物车内容 -->
 <view class="cart_content">
-  <view class="cart_title">购物车</view>
   <view class="cart_main">
   <!-- 当cart ==0 显示提示 -->
     <block wx:if="{{cart.length!==0}}">

@@ -34,8 +34,8 @@
           <view class="order_name">已发货</view>
         </navigator>
         <navigator url="/pages/order/index?type=5">
-          <view class="iconfont icon-tui"></view>
-          <view class="order_name">退款/售后</view>
+          <view class="iconfont icon-shouhou"></view>
+          <view class="order_name">售后</view>
         </navigator>
       </view>
     </view>
@@ -49,10 +49,12 @@
         <text>联系客服</text>
         <text class="app_info_phone">13269190028</text>
       </view>
+      <!-- 
       <navigator url="/pages/feedback/index" class="app_info_item">意见反馈</navigator>
       <view class="app_info_item">关于我们</view>
+      -->
     </view>
-    <!-- 推荐
+    <!-- 
     <view class="recommend_wrap">
       把应用推荐给其他人
     </view>

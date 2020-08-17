@@ -1,10 +1,18 @@
 /* pages/cart/index.wxss */
 page{
   padding-bottom: 90rpx;
+  background-color: #edece8;
 }
-
+.revice_address_row{
+background-color: #fff;
+margin-left: 10rpx;
+margin-right: 10rpx;
+border-radius: 10rpx;
+margin-top: 10rpx;
+}
 .revice_address_row .address_btn{
  padding: 20rpx;
+
 }
 button{
 width: 60%;
@@ -15,36 +23,45 @@ width: 60%;
   font-size: 34rpx;
   font-weight: bold;
   padding: 10rpx;
-  border-top: 1rpx solid currentColor;
-  border-bottom: 1rpx solid currentColor;
+
 }
 .user_info_row{
   display: flex;
-  padding: 20rpx;  
+  padding: 10rpx;  
   font-size: 30rpx;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.user_info_row .user_info{
-  flex: 6;
+.user_info .row{
+  flex:2;/*每行竖着站位*/
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-.user_info_row .user_phone{
-  flex: 3;
-  text-align: right;
-}
+
 /* 购物车内容 */
+.cart_content{
+  margin-top: 10rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+
+}
 .cart_title{
   padding: 20rpx;
   font-size: 36rpx;
   font-weight: bold;
   border-top: 1rpx solid currentColor;
   border-bottom: 1rpx solid currentColor;
-}
-.cart_title{
+  background-color: #fff;
   display: flex;
 }
+
 .cart_item{
   display: flex;
   padding: 10rpx;
   border-bottom: 1rpx solid #ccc;
+  background-color: #fff;
+  border-radius: 10rpx;
 }
 .cart_chk_wrap, 
 .cart_img_wrap{
@@ -54,7 +71,7 @@ width: 60%;
   align-items: center;
 }
 .cart_img_wrap{
-  flex: 4;
+  flex: 3;
 }
 .cart_img_wrap image{
   width: 100%;
@@ -64,6 +81,8 @@ width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  padding-left: 10rpx;
+  
 }
 .cart_info_wrap .goods_name{
   display: -webkit-box;

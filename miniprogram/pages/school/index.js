@@ -16,6 +16,7 @@ Page({
    * 一个学校hardcode现在 学校多了之后就是改成动态激活码
    */
   onLoad: function (options) {
+    
     const testdb = wx.cloud.database({env: 'prod-dbtpz'});//env: 'test-3aahe'
     const _ = testdb.command
     testdb.collection('school').where({

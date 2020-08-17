@@ -51,6 +51,14 @@ Page({
     this.getOrders();
     console.log(this.data.orders);
     console.log('在onLoad');
+    wx.showLoading({
+      title: '加载中',
+    })
+    
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
+  
   },
   onShow(){
     //const token=wx.getStorageSync('token');
@@ -61,9 +69,7 @@ Page({
       return;
     } */
     console.log('在onShow');
-    //getAllorder list
-   
-    
+
     //获取当前小程序的页面栈-数组
     let pages=getCurrentPages();
     //数组中索引最大的页面是当前页面
@@ -103,7 +109,7 @@ Page({
       })
       let curOrder=[];
       for(let i=0;i<orderList.length;i++){
-        if(orderList[i].status=='已付款'){
+        if(orderList[i].status=='待发货'){
           curOrder.push(orderList[i])
         }
       }
@@ -168,6 +174,7 @@ Page({
     this.setData({
       orders: wx.getStorageSync('orders')
     })
+    console.log("all orders:"+this.data.orders);
   },
 
   /**

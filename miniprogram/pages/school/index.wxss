@@ -1,13 +1,20 @@
 
 @import "../../lib/weui.wxss";
+page{
+  background-color: #edece8;
+}
 .page_title{
   text-align: center;
   font-size: 40rpx;
   font-weight: 600;
   padding-bottom: 20rpx;
+  background-color: #fff;
 }
 .page_body{
   padding-left: 20rpx ;
+}
+.page-section{
+  background-color: #fff;
 }
 .page_section_title{
   font-size: 35rpx;
@@ -15,7 +22,8 @@
   border-bottom: 1rpx solid currentColor;
   padding-left: 20rpx ;
   margin-left: 20rpx;
-  width:90%
+  width:90%;
+  
 }
 .page_item_wrap{
   display:flex;

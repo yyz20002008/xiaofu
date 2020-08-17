@@ -157,7 +157,7 @@ Page({
         totalPrice:totalPrice,
         address:address,
         orderDate:timestamp,
-        status:'已付款'
+        status:'待发货'
       },
       success: function(res) {
         // res 是一个对象

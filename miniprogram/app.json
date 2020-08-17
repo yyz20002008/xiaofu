@@ -17,7 +17,8 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"black",
+    "pageOrientation":"auto"
   },
   "tabBar": {
   

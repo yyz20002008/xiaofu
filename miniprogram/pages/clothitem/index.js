@@ -117,6 +117,7 @@ Page({
   },
     //options(Object)
   onLoad: function(options) {
+    console.log('onLoad');
     const{cloth_id}=options;
     //console.log(cloth_id);
     const{cloth_title}=options;
@@ -156,9 +157,11 @@ Page({
       }
     } 
     this.scanCart(this);
+    
   },
   
   onShow: function(f) {
+    console.log('onShow');
     this.scanCart(this);
   },
 
