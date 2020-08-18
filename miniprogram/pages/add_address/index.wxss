@@ -18,6 +18,10 @@ page {
   border-bottom:1rpx solid #eee;
 }
 
+.picker {
+  padding: 20rpx;
+  border: 2rpx solid #e5e5e5; 
+}
 input placeholder{
   color:red;
 }

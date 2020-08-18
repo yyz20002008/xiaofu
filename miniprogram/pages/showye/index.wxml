@@ -1,0 +1,3 @@
+<!--pages/showye/index.wxml-->
+<text>pages/showye/index.wxml</text>
+ <view class="page_title">{{timestamp}}</view>

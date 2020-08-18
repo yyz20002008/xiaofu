@@ -1,4 +1,6 @@
 //app.js
+
+
 App({ 
   onLaunch: function () { 
     if (!wx.cloud) {
@@ -57,16 +59,19 @@ App({
     })  */
 
   }, 
-   
-    //获取服务器时间
-    getserverDate:function(){
-      wx.cloud.callFunction({
-        name: 'getdate',
-        success: function (res) {
-          getApp().globalData.serverDate = res.result
-        }
-      })
-    },
+   //获取服务器时间
+  getserverDate:function(){
+    wx.cloud.callFunction({
+      name: 'getdate',
+      success: function (res) {
+        //wx.setStorageSync('serverDate',res.result);
+        getApp().globalData.serverDate = res.result.replace(/-/g, '/');
+        console.log('云函数返回：'+res.result)
+        console.log('getApp().globalData.serverDate'+getApp().globalData.serverDate)
+      }
+    })
+  },
+    
 
     scanCart: function (that) {
     //把购物车里面的数据都塞到了缓存里，取名cart,任何一项修改购物车的行为，都会先取购物车的缓存，在重新更新缓存里的购物车参数

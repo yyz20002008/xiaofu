@@ -100,6 +100,14 @@
 					"id": -1,
 					"name": "地址管理",
 					"pathName": "pages/address/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "首页",
+					"pathName": "pages/showye/index",
+					"query": "",
 					"scene": null
 				}
 			]

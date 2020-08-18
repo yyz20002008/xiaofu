@@ -11,7 +11,6 @@ import{getSetting,chooseAddress,openSetting,showModal,showToast } from "../../ut
 import regeneratorRuntime from '../../lib/runtime/runtime';
 import{formatTime,uuid} from "../../utils/util.js";
 import{utc_beijing} from "../../utils/jumpUtils.js";
-utc_beijing
 const app = getApp()
 Page({
 
@@ -19,6 +18,7 @@ Page({
     address:{},
     cart:[],
     totalPrice:0,
+    shippingFee:0.5,
     totalNum:0
   },
   onShow:function(){
@@ -29,19 +29,19 @@ Page({
     cart=cart.filter(v=>v.checked);
     this.setData({address});
     let totalPrice=0;
-      let totalNum=0;
-      cart.forEach(v=>{
+    let totalNum=0;
+    cart.forEach(v=>{
           totalPrice+=v.num*v.cloth_price;
           totalNum+=v.num;
       })
-
+    totalPrice+=this.data.shippingFee;
       //重新设置data
-      this.setData({
+    this.setData({
         cart,
         address,
         totalPrice,
         totalNum
-      });
+    });
   },
   //点击支付
   async handleOrderPay(){
@@ -73,7 +73,8 @@ Page({
     if (totalPrice>0) {
       const res=await showModal({content:"您确定要开始支付吗?不改了?"});
         if (res.confirm) {
-          this._callQuestionPay(body, details,goodsnum, subMchId, inputPayVal);
+         this._callQuestionPay(body, details,goodsnum, subMchId, inputPayVal);
+         //testing:this.creatOrder(goodsnum);
         } 
     } else {
       await showToast({title:"亲,您没有输入任何金额,无法解锁哦"}); 

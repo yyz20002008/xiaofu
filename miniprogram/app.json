@@ -1,5 +1,6 @@
 {
   "pages":[
+   
     "pages/school/index",
     "pages/clothitem/index",
     "pages/order/index",
@@ -11,7 +12,8 @@
     "pages/login/index",
     "pages/address/index",
     "pages/add_address/index",
-    "pages/showye/showye"
+    "pages/showye/showye",
+    "pages/user_test/index"
     
   ],
   "window":{

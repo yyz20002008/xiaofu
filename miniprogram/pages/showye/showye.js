@@ -1,8 +1,14 @@
 // pages/showye/showye.js
 import{ request } from "../../request/index.js"
+
+import{formatTime,uuid} from "../../utils/util.js";
+import{utc_beijing} from "../../utils/jumpUtils.js";
+const app = getApp()
+
 Page({
   data: {
-    icode:''
+    icode:'',
+    timestamp:''
   },
   goToSchoolPage: function(e){
     let {icode}=this.data;
@@ -33,6 +39,7 @@ Page({
         icode:''
       })
     }
+    
     //wx.setStorageSync('icode', this.data.icode)
   },
   /*获取邀请码*/
@@ -43,6 +50,9 @@ Page({
   },
   clickButton: function(e){
     console.log("邀请码：" + this.data.icode );
+  },
+  onLoad(){
+    
   },
   onShow(){
     
