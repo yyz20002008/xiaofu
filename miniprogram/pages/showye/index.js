@@ -1,34 +1,35 @@
 // pages/showye/index.js
 
-
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    timestamp:''
+    curServerDate:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.setData({ curServerDate:app.globalData.serverDate})
+    console.log(this.data.curServerDate)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    console.log(this.data.curServerDate)
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(this.data.curServerDate)
   },
 
   /**

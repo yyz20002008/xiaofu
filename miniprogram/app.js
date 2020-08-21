@@ -16,9 +16,10 @@ App({
         traceUser: true,
       })
     }
-    this.globalData = { serverDate: this.getserverDate()}
+   // this.globalData = { serverDate: this.getserverDate()}
+    this.getOpenid();
+
     var that = this;
-      //初始化购物车
       /*
     that.timer = setInterval(function () {
          that.scanCart(that)
@@ -62,36 +63,47 @@ App({
    //获取服务器时间
   getserverDate:function(){
     wx.cloud.callFunction({
-      name: 'getdate',
+      name: 'getdate', 
       success: function (res) {
-        //wx.setStorageSync('serverDate',res.result);
-        getApp().globalData.serverDate = res.result.replace(/-/g, '/');
+       
+        getApp().globalData.serverDate = res.result//.replace(/-/g, '/');
         console.log('云函数返回：'+res.result)
-        console.log('getApp().globalData.serverDate'+getApp().globalData.serverDate)
+        //console.log('getApp().globalData.serverDate: '+getApp().globalData.serverDate)
+       // wx.setStorageSync('serverDate',getApp().globalData.serverDate);
       }
     })
   },
-    
-
-    scanCart: function (that) {
-    //把购物车里面的数据都塞到了缓存里，取名cart,任何一项修改购物车的行为，都会先取购物车的缓存，在重新更新缓存里的购物车参数
-    //购物车
-      var cart = wx.getStorageSync("cart");
-      //统计购物车商品的总数量
-      var cartnumber = 0; //购物车商品数量      
-      for (var index in cart) {
-          cartnumber += cart[index].num
-      }
-      if (cart.length) {   //判断购物车的数量个数，购物车如果为空就走else
-          wx.setTabBarBadge({ //购物车不为空 ，给购物车的tabar右上角添加购物车数量标志
-            index: 1,						//标志添加位置
-            text: "" + cartnumber + ""				//通过编译，将购物车总数量放到这里
-          })
-      } else {//购物车为空
-          wx.removeTabBarBadge({    //移除指定位置的tabbar右上角的标志
-            index: 1,
-          })
-      }
+    // 获取用户openid
+  getOpenid() {
+    let that = this;
+    wx.cloud.callFunction({
+    name: 'getOpenid',
+    complete: res => {
+      console.log('云函数获取到的openid: ', res.result.openid)
+      var openid = res.result.openid;
+      wx.setStorageSync('openid', openid);
     }
+    })
+  },
+  scanCart: function (that) {
+  //把购物车里面的数据都塞到了缓存里，取名cart,任何一项修改购物车的行为，都会先取购物车的缓存，在重新更新缓存里的购物车参数
+  //购物车
+    var cart = wx.getStorageSync("cart");
+    //统计购物车商品的总数量
+    var cartnumber = 0; //购物车商品数量      
+    for (var index in cart) {
+        cartnumber += cart[index].num
+    }
+    if (cart.length) {   //判断购物车的数量个数，购物车如果为空就走else
+        wx.setTabBarBadge({ //购物车不为空 ，给购物车的tabar右上角添加购物车数量标志
+          index: 1,						//标志添加位置
+          text: "" + cartnumber + ""				//通过编译，将购物车总数量放到这里
+        })
+    } else {//购物车为空
+        wx.removeTabBarBadge({    //移除指定位置的tabbar右上角的标志
+          index: 1,
+        })
+    }
+  }
 
 })

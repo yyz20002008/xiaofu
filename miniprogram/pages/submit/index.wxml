@@ -42,7 +42,6 @@
   
   </view>
 </view>
-
 <!-- 底部工具栏 -->
 <view class="footer_tool">
    <view class="total_price_wrap">
@@ -58,7 +57,7 @@
    
   </view>
   <!-- 支付 -->
-  <view class="order_pay_wrap" bindtap="handleOrderPay" >
-    支付({{totalNum}})
+  <view class="order_pay_wrap" bindtap="handleOrderSubmit" >
+    提交订单({{totalNum}})
   </view>
 </view>

@@ -48,17 +48,9 @@ Page({
     ],
   },
   onLoad(){
-    this.getOrders();
-    console.log(this.data.orders);
     console.log('在onLoad');
-    wx.showLoading({
-      title: '加载中',
-    })
+    this.getOrders();
     
-    setTimeout(function () {
-      wx.hideLoading()
-    }, 2000)
-  
   },
   onShow(){
     //const token=wx.getStorageSync('token');
@@ -68,18 +60,34 @@ Page({
       })
       return;
     } */
+    var that=this
     console.log('在onShow');
-
-    //获取当前小程序的页面栈-数组
-    let pages=getCurrentPages();
-    //数组中索引最大的页面是当前页面
-    let currentPage=pages[pages.length-1];
-    //获取url上type参数
-    const {type}=currentPage.options;
-    console.log(type);
-    //激活选中标题
-    this.changeTitleByIndex(type-1);
-    this.getCurOrder(type);
+    wx.showToast({
+      title: '加载中',
+      icon: 'none',
+      duration: 2000,
+      success: function () {
+        setTimeout(function() {
+          that.setData({
+            orders: wx.getStorageSync('orders')
+          }) 
+          console.log("all orders:"+that.data.orders);
+          console.log(that.data.orders);
+           //获取当前小程序的页面栈-数组
+           let pages=getCurrentPages();
+           //数组中索引最大的页面是当前页面
+           let currentPage=pages[pages.length-1];
+           //获取url上type参数
+           const {type}=currentPage.options;
+           console.log(type);
+           //激活选中标题
+           that.changeTitleByIndex(type-1);
+           that.getCurOrder(type);
+        }, 2000);
+      }
+    });
+   
+   
   },
   //显示分类订单
   getCurOrder(type){
@@ -156,8 +164,6 @@ Page({
   getOrders(){
     //const res=await request({url:"/my/orders/all",data:{type}});
     //console.log({icode});
-
-    this.getOpenid();
     var cur_openid=wx.getStorageSync('openid');
     const testdb = wx.cloud.database({env: 'prod-dbtpz'});
     const _ = testdb.command
@@ -167,14 +173,11 @@ Page({
     })
     .get({
       success: function(res) {
-        //console.log(res.data)
+        console.log("取到所有order")
         wx.setStorageSync('orders', res.data)
       }
     })
-    this.setData({
-      orders: wx.getStorageSync('orders')
-    })
-    console.log("all orders:"+this.data.orders);
+    
   },
 
   /**
@@ -208,16 +211,5 @@ Page({
       url: '/pages/order_details/index?curOrder='+ JSON.stringify(curOrder)+'&&index='+e.currentTarget.dataset.index
     });
   },
-  // 获取用户openid
- getOpenid() {
-  let that = this;
-  wx.cloud.callFunction({
-   name: 'getOpenid',
-   complete: res => {
-    console.log('云函数获取到的openid: ', res.result.openid)
-    var openid = res.result.openid;
-    wx.setStorageSync('openid', openid);
-   }
-  })
- }
+  
 })

@@ -13,7 +13,8 @@ Page({
     showView:false,
     cloth_img:[
       "https://user-images.githubusercontent.com/1105915/89417449-b2515a00-d6fc-11ea-9049-767ceecc82d0.jpg",
-      "https://user-images.githubusercontent.com/1105915/89417448-b2515a00-d6fc-11ea-8327-75d8722438c6.jpg"
+      "https://user-images.githubusercontent.com/1105915/89417448-b2515a00-d6fc-11ea-8327-75d8722438c6.jpg",
+      "https://user-images.githubusercontent.com/1105915/90826670-e20d7e00-e308-11ea-9a9b-5754b66d9c4a.PNG"
     ],
     cloth_item_cur:[],
     size: [
@@ -45,7 +46,7 @@ Page({
 
     },
     cart_num:0,
-    
+    curServerDate:''
   },
   //选择size
   radioChange(e){
@@ -132,19 +133,7 @@ Page({
       },
       
     })
-    const cur_sch_id=wx.getStorageSync('school')[0]._id;
-    console.log(cur_sch_id);
-    const testdb = wx.cloud.database({env: 'prod-dbtpz'});
-    const _ = testdb.command
-    testdb.collection('cloth').where({
-      school_id:parseInt(cur_sch_id),
-    })
-    .get({
-      success: function(res) {
-        //console.log(res.data)
-        wx.setStorageSync('clothitem',res.data)
-      }
-    })
+        
     const tempitem=wx.getStorageSync('clothitem');
     let temp=[];
     for(let i=0;i<tempitem.length;++i){
@@ -157,7 +146,8 @@ Page({
       }
     } 
     this.scanCart(this);
-    
+    this.setData({ curServerDate: wx.getStorageSync('serverDate')})
+    console.log(this.data.curServerDate)
   },
   
   onShow: function(f) {

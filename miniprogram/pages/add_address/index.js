@@ -13,8 +13,8 @@ Page({
     chinaData: [],
     //date: '2016-09-01',
     //time: '12:01',
-    //region: ['北京市', '北京市', '海淀区'],
-    customItem: '全部'
+    region: []
+    //customItem: '全部'
   },
 
   /**
@@ -22,9 +22,9 @@ Page({
    */
   onLoad: function (e) {
     
-   // console.log(chinaData)
-    console.log(e.address)
-    console.log(e.index)
+    //console.log(chinaData)
+    //console.log(e.address)
+    //console.log(e.index)
     //修改地址的话接传过来的值
     if (e.address != undefined){
       var list = JSON.parse(e.address);
@@ -87,10 +87,16 @@ Page({
     }else {
       if(this.data.tag === true){
         var address = e.detail.value;
+        this.setData({
+          "region[0]":this.data.multiArray[0][this.data.multiIndex[0]],
+          "region[1]":this.data.multiArray[1][this.data.multiIndex[1]],
+          "region[2]":this.data.multiArray[2][this.data.multiIndex[2]]
+        })
+        address['region']=this.data.region;
         console.log(address);
         //address = JSON.stringify(address);
         addrList.push(address);
-        console.log(addrList); 
+        //console.log(addrList); 
         //保存新地址
         wx.showToast({
           title: '新增地址成功',
@@ -107,6 +113,13 @@ Page({
         wx.setStorageSync('addrList', addrList);  
       }else{
           var address = e.detail.value;
+          this.setData({
+            "region[0]":this.data.multiArray[0][this.data.multiIndex[0]],
+            "region[1]":this.data.multiArray[1][this.data.multiIndex[1]],
+            "region[2]":this.data.multiArray[2][this.data.multiIndex[2]]
+          })
+          address['region']=this.data.region;
+          console.log(address);
           console.log("index:"+this.data.curAddrIndex)
             //修改地址
           addrList[this.data.curAddrIndex]=address;
@@ -132,17 +145,23 @@ Page({
   //地址联动相关
   bindMultiPickerChange: function(e) {
     console.log(
-      this.data.multiArray[0][e.detail.value[0]],
-      this.data.multiArray[1][e.detail.value[1]],
-      this.data.multiArray[2][e.detail.value[2]]
+      "pickerchange:"+e.detail.value
     );
+    this.setData({
+      "region[0]":this.data.multiArray[0][e.detail.value[0]],
+      "region[1]":this.data.multiArray[1][e.detail.value[1]],
+      "region[2]":this.data.multiArray[2][e.detail.value[2]]
+    })
   },
   bindMultiPickerColumnChange: function(e) {
+    console.log(
+      e.detail.value
+    );
     var move = e.detail;
     var index = move.column;
-    console.log("index:"+index);
+   // console.log("index:"+index);
     var value = move.value;
-    console.log("value:"+value);
+    //console.log("value:"+value);
     if (index == 0) {
       this.setData({
         multiIndex: [value,0,0]
@@ -188,7 +207,7 @@ Page({
         for(var i = 0; i <  this.data.chinaData.length; i++) {
           sheng.push(this.data.chinaData[i].name);
         }
-        console.log(sheng);
+        //console.log(sheng);
         this.setData({
           "multiArray[0]": sheng
         })

@@ -8,7 +8,7 @@ const app = getApp()
 Page({
   data: {
     icode:'',
-    timestamp:''
+    curServerDate:''
   },
   goToSchoolPage: function(e){
     let {icode}=this.data;
@@ -52,6 +52,7 @@ Page({
     console.log("邀请码：" + this.data.icode );
   },
   onLoad(){
+    
     
   },
   onShow(){

@@ -5,7 +5,10 @@ cloud.init({
   //env: 'test-3aahe'
   env: 'prod-dbtpz'
 })
+
+process.env.TZ ='Asia/Shanghai'
 // 云函数入口函数
 exports.main = async (event, context) => {
+  
   return new Date()
 }

@@ -33,11 +33,11 @@
     </view>
     <!-- 地区选择联动部分 -->
     <view class = "item">
-      <text>选择地区</text>
+      <text>请选择地区</text>
       <view class = "right">
         <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
           <view class="picker">
-            {{multiArray[0][multiIndex[0]]}}-{{multiArray[1][multiIndex[1]]}}-{{multiArray[2][multiIndex[2]]}}
+            {{multiArray[0][multiIndex[0]]}} - {{multiArray[1][multiIndex[1]]}} - {{multiArray[2][multiIndex[2]]}}
           </view>
         </picker>
       </view>

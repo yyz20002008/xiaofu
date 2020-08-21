@@ -20,7 +20,7 @@ page {
 
 .picker {
   padding: 20rpx;
-  border: 2rpx solid #e5e5e5; 
+  border: 1rpx solid #e5e5e5; 
 }
 input placeholder{
   color:red;
@@ -37,7 +37,7 @@ input placeholder{
 
 .right{
   margin-left: 50rpx;
-  width:75%;
+  width:70%;
   display:flex;
 }
 .right1{

@@ -6,7 +6,13 @@ Page({
    */
   data: {
     schoolName:"",
-    school:{},
+    school:{
+      "_id":101001,
+      schoolName:"北京一零一中学",
+      grade:[
+        {level:"高中",class:[2020,2019,2018]},
+        {level:"初中",class:[2020,2019,2018]}]
+    },
     grade:[],
     class:[],
   },
@@ -16,7 +22,7 @@ Page({
    * 一个学校hardcode现在 学校多了之后就是改成动态激活码
    */
   onLoad: function (options) {
-    
+    /*//一个学校就节省时间不用读云数据库了
     const testdb = wx.cloud.database({env: 'prod-dbtpz'});//env: 'test-3aahe'
     const _ = testdb.command
     testdb.collection('school').where({
@@ -27,12 +33,26 @@ Page({
         //console.log(res.data)
         wx.setStorageSync('school', res.data)
       }
+    })*/
+    wx.setStorageSync('school',this.data.school)
+    
+    const cur_sch_id=wx.getStorageSync('school')["_id"];
+    console.log(cur_sch_id);
+    const testdb = wx.cloud.database({env: 'prod-dbtpz'});
+    const _ = testdb.command
+    testdb.collection('cloth').where({
+      school_id:parseInt(cur_sch_id),
     })
-
+    .get({
+      success: function(res) {
+        //console.log(res.data)
+        wx.setStorageSync('clothitem',res.data)
+      }
+    })
     setTimeout(function () {
       //要延时执行的代码
      }, 1000) //延迟时间 这里是1秒
-    
+
   },
 
   /**
@@ -49,12 +69,12 @@ Page({
     const school=wx.getStorageSync('school');
     //console.log(school[0].grade);
     var g=[],c=[]
-    for(let i=0;i<school[0].grade.length;i++){
-      g.push(school[0].grade[i]);
+    for(let i=0;i<school.grade.length;i++){
+      g.push(school.grade[i]);
 
     }
     this.setData({
-        schoolName:school[0].schoolName,
+        schoolName:school.schoolName,
         grade:g
     })
     this.scanCart(this);
