@@ -57,21 +57,6 @@ page{
   padding-bottom: 40rpx;
 }
 
-/* 历史足迹 */
-.history_wrap{
-  background-color: #fff;
-  display: flex;
-  border-radius: 10rpx;
-}
-.history_wrap navigator{
-  flex: 1;
-  text-align: center;
-  padding: 10rpx 0;
-}
-.history_wrap .his_num{
-  color: var(--themeColor);
-  padding-bottom: 8rpx;
-}
 
 /* 我的订单 */
 .orders_wrap{
@@ -82,7 +67,23 @@ page{
 .orders_title{
   padding: 20rpx;
   border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
 }
+
+.orders_title_all{
+  display: flex;
+  justify-content: space-between;
+}
+.orders_title_all_name{
+}
+.orders_title_all .iconfont.icon-right{
+  color: var(--themeColor);
+  font-size: 35rpx;
+
+  
+}
+
 .orders_content{
   display: flex;
 }

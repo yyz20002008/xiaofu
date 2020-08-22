@@ -21,7 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-    
+    this.getSiteData();
     //console.log(chinaData)
     //console.log(e.address)
     //console.log(e.index)
@@ -29,16 +29,35 @@ Page({
     if (e.address != undefined){
       var list = JSON.parse(e.address);
       let index = JSON.parse(e.index);
+      //根据传进来的地区赋值
+      let mA=this.data.multiArray;
+      for(let i=0;i< mA[1].length;i++){
+        if( mA[1][i]==list.region[1]){
+          this.setData({
+            'multiIndex[1]':i
+          })
+        }
+      }
+      for(let i=0;i< mA[2].length;i++){
+        if( mA[2][i]==list.region[2]){
+          this.setData({
+            'multiIndex[2]':i
+          })
+        }
+      }
+      console.log( this.data.multiIndex);
       //传过来的要修改的地址显示在页面
       this.setData({
         list: list,
         curAddrIndex:index
+ 
+
       })
       //console.log(this.data.curAddrIndex)
     }else{
       console.log("不存在传入值")//新地址
     }
-    this.getSiteData();
+   
   },
 
   /**

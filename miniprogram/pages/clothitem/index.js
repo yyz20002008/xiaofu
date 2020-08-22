@@ -13,8 +13,7 @@ Page({
     showView:false,
     cloth_img:[
       "https://user-images.githubusercontent.com/1105915/89417449-b2515a00-d6fc-11ea-9049-767ceecc82d0.jpg",
-      "https://user-images.githubusercontent.com/1105915/89417448-b2515a00-d6fc-11ea-8327-75d8722438c6.jpg",
-      "https://user-images.githubusercontent.com/1105915/90826670-e20d7e00-e308-11ea-9a9b-5754b66d9c4a.PNG"
+      "https://user-images.githubusercontent.com/1105915/89417448-b2515a00-d6fc-11ea-8327-75d8722438c6.jpg"
     ],
     cloth_item_cur:[],
     size: [
@@ -46,7 +45,14 @@ Page({
 
     },
     cart_num:0,
-    curServerDate:''
+    curServerDate:'',
+    swiperCurrent:0,
+    autoplay: true,
+  },
+  //轮播图
+  swiperChange(e){
+    //目前播放的图片index
+    //console.log(e.detail.current);
   },
   //选择size
   radioChange(e){
@@ -108,9 +114,15 @@ Page({
       if (gsize[i].checked ==true){
         this.setData({
           'clothInfo.cloth_price': gsize[i].cloth_price, 
-          'clothInfo.cloth_name': gsize[i].cloth_name 
+          'clothInfo.cloth_name': gsize[i].cloth_name ,
+          swiperCurrent:i
         })
       } 
+      else{
+        this.setData({
+          swiperCurrent:0
+        })
+      }
     }
     this.setData({
       cloth_item_cur:gsize

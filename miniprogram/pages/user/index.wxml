@@ -15,12 +15,21 @@
   <view class="user_main">
   <!--我的订单-->
     <view class="orders_wrap">
-      <view class="orders_title">我的订单</view>
+      <view class="orders_title">
+        <view class="orders_title_my">我的订单</view>
+        <navigator class="orders_title_all" url="/pages/order/index?type=1">
+          <view class="orders_title_all_name">全部订单</view>
+          <view class ="iconfont icon-right"></view> 
+        </navigator>
+         
+      </view>
       <view class ="orders_content">
+      <!--
         <navigator url="/pages/order/index?type=1">
           <view class="iconfont icon-ding_dan"></view>
           <view class="order_name">全部订单</view>
         </navigator>
+        -->
         <navigator url="/pages/order/index?type=2">
           <view class="iconfont icon-fukuan"></view>
           <view class="order_name">待付款</view>

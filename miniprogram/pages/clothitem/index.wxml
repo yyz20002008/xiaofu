@@ -1,6 +1,6 @@
 <!--pages/clothitem/index.wxml-->
 <view class="detail_swiper">
-  <swiper autoplay indicator-dots circular>
+  <swiper autoplay='{{autoplay}}' indicator-dots circular bindchange="swiperChange" current="{{swiperCurrent}}">
     <swiper-item 
     wx:for="{{cloth_img}}" 
     wx:key="cloth_img"
