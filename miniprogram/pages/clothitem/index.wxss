@@ -70,7 +70,8 @@ input{
     display: table;
     width: 100%;
     border-collapse: collapse; 
-    box-sizing: border-box;}
+    box-sizing: border-box;
+  }
 .table-tr {
   display: table-row;
   height: 92rpx;
@@ -138,13 +139,11 @@ button{
 }
 .total_price_wrap{
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
 .total_price_wrap{
   flex: 3;
-  flex-direction: column;
   padding-right: 20rpx;
 }
 .total_price_wrap .total_price_text{

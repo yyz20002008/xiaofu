@@ -20,7 +20,7 @@ Page({
     address:{},
     cart:[],
     totalPrice:0,
-    shippingFee:0.1,
+    shippingFee:10,
     totalNum:0,
     beijing:''
   },
@@ -120,7 +120,8 @@ Page({
           duration: 3000,
           success: function () {
             setTimeout(function() {
-              wx.navigateTo({url: '../order/index?type=1',})//跳转到order页面要给个参数要不没order list
+             // wx.navigateTo({url: '../order/index?type=1',})//跳转到order页面要给个参数要不没order list
+             wx.switchTab({url: '../user/index',})
             }, 3000);
           }
         });

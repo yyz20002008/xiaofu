@@ -58,9 +58,9 @@
 <view class="goods_info_details"> 
   <view class="goods_info_details_title">商品详情</view>
   <view class="goods_info_details_content">
-     <view>请根据尺码指南选择.</view>
-     <view>若定整套请选在“秋装一套”“夏装一套” 数量可在购物车中更改</view>
-     <view>点击特体有备注，务必填写详细尺寸信息.</view>
+     <view>请根据尺码指南选择。</view>
+     <view>若定整套请选在“秋装一套”“夏装一套” 数量可在购物车中更改。</view>
+     <view>点击特体有备注，务必填写详细尺寸信息。</view>
     <view class="table">
       <view class="table-tr">
         <view class="table-th">型号</view>

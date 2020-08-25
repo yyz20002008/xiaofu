@@ -167,32 +167,47 @@ Page({
     this.scanCart(this);
   },
 
-  handleCartAdd(){
-    let cart=wx.getStorageSync('cart')||[];
-    //console.log(this.data.clothInfo);
-    let cloth_long_id=this.data.clothInfo.cloth_title
+  handleCartAdd(e){
+    
+    if(this.data.clothInfo.cloth_name==undefined)
+    {  wx.showModal({ title: '提示',content: "请选择类别！"})
+    }
+    else if (this.data.clothInfo.cloth_size==undefined){
+      wx.showModal({title: '提示', content: "请选择尺码！"})
+    }
+    else if (this.data.clothInfo.cloth_size=='特体'&&this.data.clothInfo.cloth_notes==''){
+      wx.showModal({title: '提示',content: "特体请填写信息！" })
+    }
+    else if (this.data.clothInfo.cloth_gender==undefined){
+      wx.showModal({title: '提示',content: "请选择性别！" })
+    }
+    else{
+      let cloth_long_id=this.data.clothInfo.cloth_title
                       +this.data.clothInfo.cloth_name
                       +this.data.clothInfo.cloth_gender
                       +this.data.clothInfo.cloth_size;
-    this.setData({
-      'clothInfo.cloth_id':cloth_long_id
-    })
-    let index=cart.findIndex((v)=>(v.cloth_id)===(this.data.clothInfo.cloth_id));
-    console.log(cart);
-    if (index===-1){
-      this.data.clothInfo.num=1;
-      this.data.clothInfo.checked=true;
-      cart.push(this.data.clothInfo);
+      this.setData({
+        'clothInfo.cloth_id':cloth_long_id
+      })
+      let cart=wx.getStorageSync('cart')||[];
+      let index=cart.findIndex((v)=>(v.cloth_id)===(this.data.clothInfo.cloth_id));
+      console.log(cart);
+      if (index===-1){
+        this.data.clothInfo.num=1;
+        this.data.clothInfo.checked=true;
+        cart.push(this.data.clothInfo);
+      }
+      else{
+        cart[index].num++;
+      }
+      wx.setStorageSync('cart', cart);
+      wx.showToast({
+        title: '加入成功',
+        icon:'success',
+        mask:true,
+      })
+    
     }
-    else{
-      cart[index].num++;
-    }
-    wx.setStorageSync('cart', cart);
-    wx.showToast({
-      title: '加入成功',
-      icon:'success',
-      mask:true,
-    })
     //更新cartDot
     this.scanCart(this);
   },

@@ -44,6 +44,7 @@
           <view class="goods_name">校服：{{item.cloth_title}}</view>
           <view>类型： {{item.cloth_name}}</view>
           <view >尺码： {{item.cloth_size}}</view>
+          <view >备注： {{item.cloth_notes}}</view>
           <view >性别： {{item.cloth_gender}}</view>
           <view class="goods_price_wrap "> 
               <view class="goods_price">￥{{item.cloth_price}} </view>
