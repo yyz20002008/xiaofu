@@ -13,7 +13,7 @@
     <view class = "item">
       <text>学生年级</text>
       <view class = "right">
-      <input type="text" name = "student_class" placeholder="请填写学生年级，2020级高中，etc."  value="{{list.student_class}}" />
+      <input type="text" name = "student_class" placeholder="请填写学生年级，2022级初中，etc."  value="{{list.student_class}}" />
       </view>
     </view>
     <!-- 收货人 -->

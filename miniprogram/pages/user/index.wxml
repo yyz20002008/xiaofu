@@ -56,7 +56,8 @@
     <view class="app_info_wrap">
       <view class="app_info_item app_info_contact">
         <text>联系客服</text>
-        <text class="app_info_phone">13269190028</text>
+        <view class="iconfont icon-kefu"></view>
+        <button class="app_info_phone" open-type='contact'></button>
       </view>
       <!-- 
       <navigator url="/pages/feedback/index" class="app_info_item">意见反馈</navigator>
@@ -67,6 +68,7 @@
     <view class="recommend_wrap">
       把应用推荐给其他人
     </view>
+   
      -->
   </view>   
 </view>

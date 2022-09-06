@@ -7,11 +7,17 @@ Page({
   data: {
     schoolName:"",
     school:{
-      "_id":101001,
-      schoolName:"北京一零一中学",
+      "_id":101002,
+      schoolName:"北京一零一中学 - 大兴分校",
       grade:[
-        {level:"高中",class:[2020,2019,2018]},
-        {level:"初中",class:[2020,2019,2018]}]
+        //{level:"高中",class:[2020,2019,2018]},
+        {level:"初中",
+          class:[{cname:2022,img:"https://user-images.githubusercontent.com/1105915/188358226-6fc7b408-5f50-46e8-838d-46ad157267a7.jpg"},
+                 {cname:2021,img:"https://user-images.githubusercontent.com/1105915/188358297-cb93f82c-cd51-42d7-a34a-15cbe9be52b5.jpg"},
+                 {cname:2020,img:"https://user-images.githubusercontent.com/1105915/188358221-9df2db6f-c3cc-43e6-a9dc-0c123963b6a3.jpg"}
+          ]
+        }
+      ]
     },
     grade:[],
     class:[],

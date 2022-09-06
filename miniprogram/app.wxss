@@ -1,6 +1,5 @@
 /**app.wxss**/
 @import"./styles/iconfont.wxss";
-@import "./lib/weui.wxss";
 .container {
   height: 100%;
   display: flex;

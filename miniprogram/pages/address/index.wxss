@@ -3,7 +3,6 @@ page{
   display: block;  
   min-height: 100%;  
   background-color:#f6f6f6;  
-  font-size: 30rpx;
   color:#353535;
   padding-bottom: 110rpx;
 }
@@ -94,7 +93,6 @@ page{
 .text{
   flex:6;
   font-size: 35rpx;
-  margin-top: 10rpx;
   align-items: flex-start;
   float: left;
 }

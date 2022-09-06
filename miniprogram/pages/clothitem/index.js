@@ -12,9 +12,23 @@ Page({
   data: {
     showView:false,
     cloth_img:[
-      "https://user-images.githubusercontent.com/1105915/89417449-b2515a00-d6fc-11ea-9049-767ceecc82d0.jpg",
-      "https://user-images.githubusercontent.com/1105915/89417448-b2515a00-d6fc-11ea-8327-75d8722438c6.jpg"
+      { subclass:'2022',subimg:[
+          'https://user-images.githubusercontent.com/1105915/188486763-f0486c7c-106e-4d56-915d-8c6c214e72f9.jpg',
+          'https://user-images.githubusercontent.com/1105915/188486765-3182fb63-f43c-4eb0-ad96-110eadcd4a98.jpg',
+          'https://user-images.githubusercontent.com/1105915/188486755-b9398676-f54c-4688-a69f-c9db16b97f78.jpg',
+          'https://user-images.githubusercontent.com/1105915/188486978-2f7c7f7c-5ed1-4423-9933-d0204557e24f.jpg',
+          'https://user-images.githubusercontent.com/1105915/188486757-9c6b5cfd-b7f5-4a82-9395-2e9bf9f674aa.jpg'
+          ]
+      },
+      { subclass:'2021',subimg:[
+          'https://user-images.githubusercontent.com/1105915/188487788-3040a3f7-8cc7-42d7-8daf-943ceee847e2.jpg', 
+          'https://user-images.githubusercontent.com/1105915/188487791-1a7012d4-bdf9-4f22-9b18-e35a3712478d.jpg',
+          'https://user-images.githubusercontent.com/1105915/188487795-ca2565bc-3086-4cc0-b9b1-ca460d2ee0ae.jpg',
+          'https://user-images.githubusercontent.com/1105915/188487798-83b11b20-38cb-4c3a-b888-6dcdc8eada01.jpg'
+          ]
+      }
     ],
+    cur_level_img:[],
     cloth_item_cur:[],
     size: [
       {value: 'S-1', name: 'S-1'},
@@ -40,8 +54,10 @@ Page({
       cloth_notes:'',
       cloth_gender:'',
       cloth_price:0,
+      cloth_class:'',
       num:0,
       checked:false
+     
 
     },
     cart_num:0,
@@ -115,7 +131,7 @@ Page({
         this.setData({
           'clothInfo.cloth_price': gsize[i].cloth_price, 
           'clothInfo.cloth_name': gsize[i].cloth_name ,
-          swiperCurrent:i
+         // swiperCurrent:i
         })
       } 
       else{
@@ -135,17 +151,18 @@ Page({
     //console.log(cloth_id);
     const{cloth_title}=options;
     const{cloth_grade}=options;
+    const{cloth_class}=options;
     this.setData({
       clothInfo: {
         cloth_id:cloth_id,
         cloth_grade:cloth_grade,
         cloth_price:0,
         cloth_title:cloth_title,
-        cloth_notes:''
+        cloth_notes:'',
+        cloth_class:cloth_class
       },
-      
     })
-        
+    
     const tempitem=wx.getStorageSync('clothitem');
     let temp=[];
     for(let i=0;i<tempitem.length;++i){
@@ -160,11 +177,19 @@ Page({
     this.scanCart(this);
     this.setData({ curServerDate: wx.getStorageSync('serverDate')})
     console.log(this.data.curServerDate)
+    for(let i=0;i<this.data.cloth_img.length;++i){
+      if (this.data.cloth_img[i].subclass == this.data.clothInfo.cloth_class){
+        this.setData({
+          cur_level_img:this.data.cloth_img[i].subimg
+        })
+      }
+    }
   },
   
   onShow: function(f) {
     console.log('onShow');
     this.scanCart(this);
+    
   },
 
   handleCartAdd(e){

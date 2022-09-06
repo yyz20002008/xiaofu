@@ -18,7 +18,7 @@
         <view class="user_phone">手机： {{address.phone}}</view>
        </view>
       <view class="row"> 
-        <view>收货地址：{{address.address}}</view>
+        <view>收货地址：{{address.region[0]+address.region[1]+address.region[2]+address.address}}</view>
       </view>
     </view>
   </view>

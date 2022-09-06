@@ -115,7 +115,7 @@ Page({
         // res 是一个对象
         console.log("订单添加成功")
         wx.showToast({
-          title: '订单添加成功',
+          title: '订单提交成功，请联系客服',
           icon: 'none',
           duration: 3000,
           success: function () {

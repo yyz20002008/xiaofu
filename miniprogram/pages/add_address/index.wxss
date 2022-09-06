@@ -3,7 +3,6 @@ page {
   display: block;  
   min-height: 100%;  
   background-color:#f6f6f6;
-  font-size: 28rpx;
   color:#353535;
   position: relative;
 } 

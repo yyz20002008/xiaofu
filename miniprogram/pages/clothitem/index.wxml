@@ -2,9 +2,9 @@
 <view class="detail_swiper">
   <swiper autoplay='{{autoplay}}' indicator-dots circular bindchange="swiperChange" current="{{swiperCurrent}}">
     <swiper-item 
-    wx:for="{{cloth_img}}" 
-    wx:key="cloth_img"
-   >
+    wx:for="{{cur_level_img}}" 
+    wx:key="cur_level_img" 
+    >
       <image mode="widthFix" src="{{item}}"></image>
     </swiper-item>
   </swiper>
@@ -58,8 +58,9 @@
 <view class="goods_info_details"> 
   <view class="goods_info_details_title">商品详情</view>
   <view class="goods_info_details_content">
-     <view>请根据尺码指南选择。</view>
-     <view>若定整套请选在“秋装一套”“夏装一套” 数量可在购物车中更改。</view>
+     <view>请根据下面的尺码指南选择。</view>
+     <view>说明：此表型号是学生现时穿着适体尺寸,家长和学生在确认型号时，应考虑到学生处于生长期，相应加大一至二号。</view>
+     <view>若定整套请选择“秋装一套”/“夏装一套”；订多套，数量可在购物车中更改。</view>
      <view>点击特体有备注，务必填写详细尺寸信息。</view>
     <view class="table">
       <view class="table-tr">
@@ -162,6 +163,7 @@
         <view class="table-td">136</view>
       </view>
     </view>
+    
   </view>
 </view>
 
