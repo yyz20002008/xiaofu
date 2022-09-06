@@ -3,16 +3,18 @@
 <view class="revice_address_row">
   <view class="address_title">收货地址</view>
   <!-- 收货地址不存在 -->
-  <view class="address_btn" wx:if="{{!address.student_name}}">
+  <view class="address_btn" wx:if="{{!address.receiver}}">
     <button bindtap="handleChooseAddress" plain type="primary">获取收货地址</button>
   </view>
   <!-- 收货地址存在 -->
   <view class="user_info_row" wx:else bindtap="handleChooseAddress">
     <view class="user_info">
+      <!--
       <view class="row"> 
         <view>学生：{{address.student_name}}</view>
        <view>年级：{{address.student_class}}</view>
       </view>
+      -->
       <view class="row"> 
         <view>收件人：{{address.receiver}}</view>
         <view class="user_phone">手机： {{address.phone}}</view>

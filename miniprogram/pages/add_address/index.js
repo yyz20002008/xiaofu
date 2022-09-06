@@ -50,8 +50,6 @@ Page({
       this.setData({
         list: list,
         curAddrIndex:index
- 
-
       })
       //console.log(this.data.curAddrIndex)
     }else{

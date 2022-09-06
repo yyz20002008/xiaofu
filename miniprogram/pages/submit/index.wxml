@@ -5,10 +5,12 @@
   <!-- 收货地址存在 -->
   <view class="user_info_row" >
     <view class="user_info">
+      <!--
       <view class="row"> 
-        <view>学生：{{address.student_name}}</view>
+       <view>学生：{{address.student_name}}</view>
        <view>年级：{{address.student_class}}</view>
       </view>
+      -->
       <view class="row"> 
         <view>收件人：{{address.receiver}}</view>
         <view class="user_phone">手机： {{address.phone}}</view>

@@ -30,17 +30,19 @@
           </view>
         </view> 
       <!--Address-->
-        <view class='order_item' >地址 
-          <view class="order_no_row"   >
+        <view class='order_item' >地址
+          <!--
+          <view class="order_no_row">
             <view class='name' >学生姓名:{{curOrder.address.student_name}}</view>
             <view class='name' >年级：{{curOrder.address.student_class}}</view>
           </view> 
+          -->
           <view class="order_no_row"   >
             <view class='name' >收件人：{{curOrder.address.receiver}}</view>
             <view class='tel' >手机：{{curOrder.address.phone}}</view>
           </view> 
           <view class="order_no_row" >
-                <view class='address'>地址：{{curOrder.address.address}}</view>
+                <view class='address'>地址：{{curOrder.address.region + ',' +curOrder.address.address}}</view>
           </view> 
         </view> 
 </view>

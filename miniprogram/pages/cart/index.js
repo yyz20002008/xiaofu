@@ -159,7 +159,7 @@ Page({
     },
     async handleSubmit(){
       const {address,totalNum}=this.data;
-      if(!address.student_name){
+      if(!address.receiver){
         await showToast({title:"您还没有选择收货地址"});
         return;
       }

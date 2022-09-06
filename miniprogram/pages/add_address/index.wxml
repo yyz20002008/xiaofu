@@ -2,20 +2,22 @@
 <!-- 信息部分开始 --> 
 <form bindsubmit="saveAddr" >
   <view class = "info">
-    <!-- 姓名部分 -->
+    <!-- 姓名部分 
     <view class = "item">
       <text>学生姓名</text>
       <view class = "right">
       <input type="text" name = "student_name" placeholder="请填写学生姓名"  value="{{list.student_name}}" />
       </view>
     </view>
-    <!-- 年级部分 -->
+    -->
+    <!-- 年级部分 
     <view class = "item">
       <text>学生年级</text>
       <view class = "right">
       <input type="text" name = "student_class" placeholder="请填写学生年级，2022级初中，etc."  value="{{list.student_class}}" />
       </view>
     </view>
+    -->
     <!-- 收货人 -->
     <view class = "item">
       <text>收货人姓名</text>
@@ -47,7 +49,7 @@
     <view class = "item">
       <text>收货地址</text>
       <view class = "right">
-      <input name="address" type="text" placeholder="请填写详细地址"  value="{{list.address}}" />
+      <input name="address" type="text" placeholder="请填写地址"  value="{{list.address}}" />
       </view>
     </view>
   </view>

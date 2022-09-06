@@ -36,9 +36,7 @@ input{
   -webkit-line-clamp: 2;
   font-weight: bold;
 }
-.goods_info{
-
-}
+/*.goods_info*/
 .goods_info_title{
   margin-left: 10rpx;
   margin-right: 10rpx;

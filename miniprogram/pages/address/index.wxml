@@ -4,10 +4,12 @@
       <view class='item_select_wrap' bindtap='select' data-index="{{index}}">
         <view class ="iconfont {{item.checked==true?'icon-checked':'icon-unchecked'}}"></view>
         <view class="item_content_wrap"   >
+            <!--
             <view class='row' >
               <view class='name' >学生姓名：{{item.student_name}}</view>
               <view class='name' >年级：{{item.student_class}}</view>
             </view>
+            -->
             <view class='row' >
               <view class='name' >收件人：{{item.receiver}}</view>
               <view class='tel' >手机：{{item.phone}}</view>

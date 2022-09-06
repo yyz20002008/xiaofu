@@ -75,8 +75,8 @@ page{
   display: flex;
   justify-content: space-between;
 }
-.orders_title_all_name{
-}
+/*.orders_title_all_name{
+}*/
 .orders_title_all .iconfont.icon-right{
   color: var(--themeColor);
   font-size: 40rpx;
