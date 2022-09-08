@@ -13,30 +13,25 @@ Page({
     showView:false,
     cloth_img:[
       { subclass:'2022',subimg:[
-          'https://user-images.githubusercontent.com/1105915/188358226-6fc7b408-5f50-46e8-838d-46ad157267a7.jpg',  
-          'https://user-images.githubusercontent.com/1105915/188486763-f0486c7c-106e-4d56-915d-8c6c214e72f9.jpg',
-          'https://user-images.githubusercontent.com/1105915/188486765-3182fb63-f43c-4eb0-ad96-110eadcd4a98.jpg',
-          'https://user-images.githubusercontent.com/1105915/188486755-b9398676-f54c-4688-a69f-c9db16b97f78.jpg',
-          'https://user-images.githubusercontent.com/1105915/188486978-2f7c7f7c-5ed1-4423-9933-d0204557e24f.jpg',
-          'https://user-images.githubusercontent.com/1105915/188486757-9c6b5cfd-b7f5-4a82-9395-2e9bf9f674aa.jpg'
+          'https://user-images.githubusercontent.com/1105915/188637669-d107e656-68d5-4f42-825d-727fbe18efe5.jpg',  
+          'https://user-images.githubusercontent.com/1105915/188637670-6a894650-c3f0-487f-b34a-9a6a824b6994.jpg',
+          'https://user-images.githubusercontent.com/1105915/188637663-6e0f60e0-c780-4dfb-a66a-7e3a913a82fa.jpg',
+          'https://user-images.githubusercontent.com/1105915/188638410-9bd41ab2-1ccf-41c8-94ef-eb01536677fa.jpg'
           ]
       },
       { subclass:'2021',subimg:[
-          'https://user-images.githubusercontent.com/1105915/188358297-cb93f82c-cd51-42d7-a34a-15cbe9be52b5.jpg',
-          'https://user-images.githubusercontent.com/1105915/188487795-ca2565bc-3086-4cc0-b9b1-ca460d2ee0ae.jpg', 
-          'https://user-images.githubusercontent.com/1105915/188487791-1a7012d4-bdf9-4f22-9b18-e35a3712478d.jpg',
-          'https://user-images.githubusercontent.com/1105915/188487798-83b11b20-38cb-4c3a-b888-6dcdc8eada01.jpg',
-          'https://user-images.githubusercontent.com/1105915/188487788-3040a3f7-8cc7-42d7-8daf-943ceee847e2.jpg',
-          'https://user-images.githubusercontent.com/1105915/188486978-2f7c7f7c-5ed1-4423-9933-d0204557e24f.jpg'
-          ]
+          'https://user-images.githubusercontent.com/1105915/188641771-513ed6d6-94aa-4dd6-8f92-eb4f54e7cf63.jpg',
+          'https://user-images.githubusercontent.com/1105915/188641772-a00ebbd8-95fe-4973-9c3d-cbe3f4244b7b.jpg',
+          'https://user-images.githubusercontent.com/1105915/188641767-a4a2d1fe-0e20-4803-be1e-ce775862cc49.jpg',
+          'https://user-images.githubusercontent.com/1105915/188641766-553ad81f-abf0-43fc-b483-fc0e73ba4838.jpg'
+        ]
       },
       { subclass:'2020',subimg:[
-      'https://user-images.githubusercontent.com/1105915/188358226-6fc7b408-5f50-46e8-838d-46ad157267a7.jpg',
-      'https://user-images.githubusercontent.com/1105915/188542194-127ab24c-ddd0-4a8a-b94f-b2f6d27f3a21.jpg',
-      'https://user-images.githubusercontent.com/1105915/188542252-c64562d2-fbfc-4d64-9857-561614ed28a7.jpg',
-      'https://user-images.githubusercontent.com/1105915/188542192-c11a459b-76d3-4d32-b2ca-946d80f9fb1d.jpg',
-      'https://user-images.githubusercontent.com/1105915/188542190-2efc179f-33ac-40f6-a0a6-f64cb7b296e5.jpg' 
-      ]
+        'https://user-images.githubusercontent.com/1105915/188643407-dab5fa0b-5aa8-4247-bb98-0930ef661256.jpg',
+        'https://user-images.githubusercontent.com/1105915/188643411-9f2bac90-e808-49af-bc04-87293949fde8.jpg',
+        'https://user-images.githubusercontent.com/1105915/188643404-e5e9bb16-3c0e-4c12-9773-3df54b322713.jpg',
+        'https://user-images.githubusercontent.com/1105915/188643412-2c90d284-374d-4ee7-bb6f-b0b3e5c8d594.jpg'  
+        ]
       }
     ],
     cur_level_img:[],
@@ -75,11 +70,13 @@ Page({
     curServerDate:'',
     swiperCurrent:0,
     autoplay: true,
+    interval: 2000,
   },
   //轮播图
   swiperChange(e){
     //目前播放的图片index
     //console.log(e.detail.current);
+
   },
   //选择size
   radioChange(e){
@@ -142,7 +139,7 @@ Page({
         this.setData({
           'clothInfo.cloth_price': gsize[i].cloth_price, 
           'clothInfo.cloth_name': gsize[i].cloth_name ,
-         // swiperCurrent:i
+          //swiperCurrent:i
         })
       } 
       else{

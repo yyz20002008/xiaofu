@@ -37,13 +37,14 @@
             <checkbox checked="{{item.checked}}"></checkbox>
           </checkbox-group>
         </view>
-        <!-- 商品信息 -->
+        <!-- 商品信息 
         <navigator class="cart_img_wrap">
           <image mode="aspectFit" src="https://user-images.githubusercontent.com/1105915/89417448-b2515a00-d6fc-11ea-8327-75d8722438c6.jpg"></image>
         </navigator>
+        -->
         <!-- 商品信息 -->
         <view class="cart_info_wrap">
-          <view class="goods_name">校服：{{item.cloth_title}}</view>
+          <view class="goods_name">校服： {{item.cloth_title}}</view>
           <view>类型： {{item.cloth_name}}</view>
           <view >尺码： {{item.cloth_size}}</view>
           <view >备注： {{item.cloth_notes}}</view>

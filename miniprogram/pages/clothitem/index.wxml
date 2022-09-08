@@ -1,6 +1,6 @@
 <!--pages/clothitem/index.wxml-->
 <view class="detail_swiper">
-  <swiper autoplay='{{autoplay}}' indicator-dots circular bindchange="swiperChange" current="{{swiperCurrent}}">
+  <swiper autoplay='{{autoplay}}' interval="{{interval}}" indicator-dots circular bindchange="swiperChange" current="{{swiperCurrent}}">
     <swiper-item 
     wx:for="{{cur_level_img}}" 
     wx:key="cur_level_img" 
@@ -28,7 +28,7 @@
           </view>
     </radio-group>
 
-      <view class="goods_info_title">型号</view>
+      <view class="goods_info_title">型号(请根据下面的尺码指南选择)</view>
         <radio-group bindchange="radioChange">
           <view class='label'>
             <label  class="ui-radio {{item.checked==true?'active':''}}" wx:for="{{size}}" wx:key="value">
@@ -39,7 +39,7 @@
         </radio-group>
         <view wx:if="{{showView}}">备注(特体必填,cm):</view>
         <view class='label' wx:if="{{showView}}">
-        <input placeholder="请依次填写身高;体重;净胸围;净臀围;净腰围;裤长" value="{{cloth_notes}}" bindinput="bindinput">''</input>
+        <input placeholder="身高;体重;净胸围;净臀围;净腰围;裤长" value="{{cloth_notes}}" bindinput="bindinput">''</input>
         </view>    
 
     <view class="goods_info_title">性别</view> 
@@ -58,11 +58,13 @@
 <view class="goods_info_details"> 
   <view class="goods_info_details_title">商品详情</view>
   <view class="goods_info_details_content">
-     <view>1.若定整套请选择“秋装一套”/“夏装一套”；订多套，数量可在购物车中更改。</view>
-     <view>2.请根据下面的尺码指南选择。</view>
-     <view>3.尺码指南是学生现时穿着适体尺寸,家长和学生在确认型号时，应考虑到学生处于生长期，相应加大一至二号。</view>
-     
-     <view>点击特体有备注，务必填写详细尺寸信息。</view>
+     <view>1.秋装男女一样，夏装男生是短裤，女生是五分裤。</view>
+     <view>2.若定整套请选择“秋装一套”/“夏装一套”；订多套，数量可在购物车中更改。</view>
+     <view>3.尺码指南(见下表)是学生现时穿着适体尺寸,家长和学生在确认型号时，应考虑到学生处于生长期，相应加大一至二号。</view>
+     <view>4.点击特体有备注，请务必填写详细尺寸信息，依次用分号隔开。</view>
+     <view>5.快递费统一10元，退换货费用需自行承担。</view>
+  </view>
+  <view class="goods_info_details_title">秋装尺码</view>
     <view class="table">
       <view class="table-tr">
         <view class="table-th">型号</view>
@@ -164,8 +166,214 @@
         <view class="table-td">136</view>
       </view>
     </view>
-    
-  </view>
+    <view class="goods_info_details_title">夏装尺码(女生)</view>
+    <view class="table">
+      <view class="table-tr">
+        <view class="table-th">型号</view>
+        <view class="table-th">国标</view>
+        <view class="table-th">身高</view>
+        <view class="table-th">衣长</view>
+        <view class="table-th">胸围</view>
+        <view class="table-th">裤长</view>
+        <view class="table-th">臀围</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">S-1</view>
+        <view class="table-td">150/70</view>
+        <view class="table-td">150</view>
+        <view class="table-td">54</view>
+        <view class="table-td">84</view>
+        <view class="table-td">48</view>
+        <view class="table-td">96</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">S</view>
+        <view class="table-td">155/75</view>
+        <view class="table-td">155</view>
+        <view class="table-td">56</view>
+        <view class="table-td">88</view>
+        <view class="table-td">50</view>
+        <view class="table-td">100</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">M</view>
+        <view class="table-td">160/80</view>
+        <view class="table-td">160</view>
+        <view class="table-td">58</view>
+        <view class="table-td">92</view>
+        <view class="table-td">52.5</view>
+        <view class="table-td">104</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">L</view>
+        <view class="table-td">165/85</view>
+        <view class="table-td">165</view>
+        <view class="table-td">60.5</view>
+        <view class="table-td">96</view>
+        <view class="table-td">55</view>
+        <view class="table-td">108</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">XL</view>
+        <view class="table-td">170/90</view>
+        <view class="table-td">170</view>
+        <view class="table-td">63</view> 
+        <view class="table-td">100</view>
+        <view class="table-td">57</view>
+        <view class="table-td">112</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">2XL</view>
+        <view class="table-td">175/95</view>
+        <view class="table-td">175</view>
+        <view class="table-td">65.5</view> 
+        <view class="table-td">104</view>
+        <view class="table-td">59.5</view>
+        <view class="table-td">116</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">3XL</view>
+        <view class="table-td">180/100</view>
+        <view class="table-td">180</view>
+        <view class="table-td">68</view> 
+        <view class="table-td">108</view>
+        <view class="table-td">62</view>
+        <view class="table-td">120</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">4XL</view>
+        <view class="table-td">185/105</view>
+        <view class="table-td">185</view>
+        <view class="table-td">70.5</view> 
+        <view class="table-td">112</view>
+        <view class="table-td">64.5</view>
+        <view class="table-td">124</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">5XL</view>
+        <view class="table-td">190/110</view>
+        <view class="table-td">190</view>
+        <view class="table-td">73</view> 
+        <view class="table-td">116</view>
+        <view class="table-td">67</view>
+        <view class="table-td">128</view>
+      </view>
+      <!--
+      <view class="table-tr">
+        <view class="table-td">6XL</view>
+        <view class="table-td">195/115</view>
+        <view class="table-td">195</view>
+        <view class="table-td">80</view> 
+        <view class="table-td">140</view>
+        <view class="table-td">118</view>
+        <view class="table-td">136</view>
+      </view>-->
+    </view>
+    <view class="goods_info_details_title">夏装尺码(男生)</view>
+    <view class="table">
+      <view class="table-tr">
+        <view class="table-th">型号</view>
+        <view class="table-th">国标</view>
+        <view class="table-th">身高</view>
+        <view class="table-th">衣长</view>
+        <view class="table-th">胸围</view>
+        <view class="table-th">裤长</view>
+        <view class="table-th">臀围</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">S-1</view>
+        <view class="table-td">150/70</view>
+        <view class="table-td">150</view>
+        <view class="table-td">61</view>
+        <view class="table-td">92</view>
+        <view class="table-td">48</view>
+        <view class="table-td">100</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">S</view>
+        <view class="table-td">155/75</view>
+        <view class="table-td">155</view>
+        <view class="table-td">63</view>
+        <view class="table-td">96</view>
+        <view class="table-td">46</view>
+        <view class="table-td">104</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">M</view>
+        <view class="table-td">160/80</view>
+        <view class="table-td">160</view>
+        <view class="table-td">65</view>
+        <view class="table-td">100</view>
+        <view class="table-td">47.5</view>
+        <view class="table-td">108</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">L</view>
+        <view class="table-td">165/85</view>
+        <view class="table-td">165</view>
+        <view class="table-td">67</view>
+        <view class="table-td">104</view>
+        <view class="table-td">49</view>
+        <view class="table-td">112</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">XL</view>
+        <view class="table-td">170/90</view>
+        <view class="table-td">170</view>
+        <view class="table-td">69</view> 
+        <view class="table-td">108</view>
+        <view class="table-td">50.5</view>
+        <view class="table-td">116</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">2XL</view>
+        <view class="table-td">175/95</view>
+        <view class="table-td">175</view>
+        <view class="table-td">71</view> 
+        <view class="table-td">112</view>
+        <view class="table-td">52</view>
+        <view class="table-td">120</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">3XL</view>
+        <view class="table-td">180/100</view>
+        <view class="table-td">180</view>
+        <view class="table-td">73</view> 
+        <view class="table-td">116</view>
+        <view class="table-td">53.5</view>
+        <view class="table-td">124</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">4XL</view>
+        <view class="table-td">185/105</view>
+        <view class="table-td">185</view>
+        <view class="table-td">75</view> 
+        <view class="table-td">120</view>
+        <view class="table-td">55</view>
+        <view class="table-td">128</view>
+      </view>
+      <view class="table-tr">
+        <view class="table-td">5XL</view>
+        <view class="table-td">190/110</view>
+        <view class="table-td">190</view>
+        <view class="table-td">77</view> 
+        <view class="table-td">124</view>
+        <view class="table-td">56.5</view>
+        <view class="table-td">132</view>
+      </view>
+      <!--
+      <view class="table-tr">
+        <view class="table-td">6XL</view>
+        <view class="table-td">195/115</view>
+        <view class="table-td">195</view>
+        <view class="table-td">80</view> 
+        <view class="table-td">140</view>
+        <view class="table-td">118</view>
+        <view class="table-td">136</view>
+      </view>-->
+    </view>
+
+  
 </view>
 
 <view class="btm_tool">

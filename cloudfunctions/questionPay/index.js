@@ -19,7 +19,7 @@ exports.main = async (event, context) => {
     totalFee:parseInt(event.payVal), // 总金额,必填
     envId: 'prod-dbtpz', // 结果通知回调云函数环境,你自己小程序的坏境id
     functionName: 'wechatpay', // 结果通知回调云函数名,非必填参数,即使为空,也不影响支付,但是官方文档里写的是必填参数,表示已醉
-    //nonceStr:event.nonceStr,//第三个坑：官方文档中相关云函数代码没有nonceStr和tradeType，测试的时候会报nonceStr不存在的错，翻看文档才发现这个是必填项，直接粘过来以后还需要加上这两个参数
+    nonceStr:event.nonceStr,//第三个坑：官方文档中相关云函数代码没有nonceStr和tradeType，测试的时候会报nonceStr不存在的错，翻看文档才发现这个是必填项，直接粘过来以后还需要加上这两个参数
     //tradeType:'JSAPI'
   });
   return res;

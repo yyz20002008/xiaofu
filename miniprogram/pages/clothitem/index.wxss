@@ -51,6 +51,7 @@ input{
 .goods_info_details_title{
   font-weight: bold;
   padding: 10rpx;
+  font-size: larger;
 }
 
 

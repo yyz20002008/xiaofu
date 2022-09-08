@@ -62,12 +62,28 @@ Page({
     //准备支付
     const goodsnum = this._getGoodsRandomNumber();//订单号
     console.log("订单号: "+goodsnum);
+    const subMchId = '1601666118'; // 微信支付商户号,必填
+    //把商品信息写进body
+    var good_info='';
+    for(let i=0;i<cart.length;i++){
+      good_info+=cart[i].cloth_title+';';
+    } 
+    console.log(good_info)
+    var good_details='';
+    for(let j=0;j<cart.length;j++){
+      good_details+=cart[j].cloth_id+' x '+cart[j].num+';';
+    }
+    console.log(good_details);
+    const body = good_info;//订单名称
+    const details = good_details;//订单详情
+    const inputSubmitVal = totalPrice * 100;//系统是用分开始计算
     console.log(totalPrice);
     if (totalPrice>0) {
-      const res=await showModal({content:"您确定要提交订单吗?不改了?"});
+      const res=await showModal({content:"您确定要提交订单了吗？请注意退换货费用需自行承担，提交前请最后核对尺码。"});
         if (res.confirm) {
          //提交订单
-         this.creatOrder(goodsnum);
+         this._callQuestionPay(body, details,goodsnum, subMchId, inputSubmitVal);
+         //if not wepay, use this.creatOrder(goodsnum);
         } 
     } else {
       await showToast({title:"亲,没有商品,无法提交哦"}); 
@@ -75,6 +91,51 @@ Page({
     } 
   },
   
+  // 请求questionPay云函数,调用支付能力
+  _callQuestionPay(body, details,goodsnum, subMchId, payVal) {
+    wx.cloud
+      .callFunction({
+        name: 'questionPay',
+        data: {
+          // 需要将data里面的参数传给questionPay云函数
+          body,
+          details,
+          goodsnum, // 商品订单号不能重复
+          subMchId, // 子商户号,微信支付商户号,必填
+          payVal, // 这里必须整数,不能是小数,而且类型是number,否则就会报错
+          nonceStr:uuid(32, 32)//调用自己的uuid函数 不用也行 原来发现错在totalprice没值
+        },
+      })
+      .then((res) => {
+        console.log(res);//商户支付受限
+        const payment = res.result.payment;
+        console.log('payment:'+payment); // 里面包含appId,nonceStr,package,paySign,signType,timeStamp这些支付参数
+        wx.requestPayment({
+          // 根据获取到的参数调用支付 API 发起支付
+          ...payment, // 解构参数appId,nonceStr,package,paySign,signType,timeStamp
+          success: (res) => {
+            console.log('支付成功', res);
+            wx.showToast({
+              title: '支付成功',
+              success: () => console.log('success'),
+              fail: () => console.log('failure'),
+            });
+            this.creatOrder(goodsnum);
+          },
+          fail: (err) => {
+            console.error('支付失败', err);
+            wx.showToast({
+              title: '支付失败',
+              success: () => console.log('success'),
+              fail: () => console.log('failure'),
+            });
+          },
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    },
   creatOrder(goodsnum){
     //获取缓存中数据
     let cart=wx.getStorageSync("cart")||[];
@@ -115,7 +176,7 @@ Page({
         // res 是一个对象
         console.log("订单添加成功")
         wx.showToast({
-          title: '订单提交成功，请联系客服',
+          title: '订单提交成功,如有问题请联系客服',
           icon: 'none',
           duration: 3000,
           success: function () {
