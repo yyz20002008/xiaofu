@@ -50,7 +50,7 @@ input{
 }
 .goods_info_details_title{
   font-weight: bold;
-  padding: 10rpx;
+  margin: 10rpx;
   font-size: larger;
 }
 
@@ -68,7 +68,7 @@ input{
 .table {
     display: table;
     width: 100%;
-    border-collapse: collapse; 
+    /*border-collapse: collapse;*/ 
     box-sizing: border-box;
   }
 .table-tr {
