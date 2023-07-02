@@ -1,3 +1,28 @@
-<!--pages/showye/index.wxml-->
-<text>pages/showye/index.wxml</text>
- <view class="page_title">{{curServerDate}}</view>
+<!--pages/showye/showye.wxml-->
+
+<view class="container">
+  <view class="page-body">
+    <view class="page-section">
+      <view>
+        <image mode='aspectFit' placeholder="誉方元logo" src="{{src_img}}"></image>
+      </view>
+      <view class="page_title">誉方元制衣</view>
+      
+    </view>
+    <view class="page-section">
+      <view class="page_title">校服订购入口</view>
+      <view class="weui-cells">
+        <input class="weui-input" type="number" placeholder="请输入邀请码" bindinput="codeInput" value='{{icode}}'/>
+      </view>
+      <view class="weui-btn-area">
+            <button class="weui-btn"  bindtap="goToSchoolPage">进入学校</button>
+      </view>
+    </view>
+    
+  </view>
+</view>
+
+
+
+
+

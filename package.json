@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "node-xlsx": "^0.21.0"
+  },
+  "name": "mp-xiaofu",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yyz20002008/xiaofu.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yyz20002008/xiaofu/issues"
+  },
+  "homepage": "https://github.com/yyz20002008/xiaofu#readme"
+}

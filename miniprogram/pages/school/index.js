@@ -7,17 +7,18 @@ Page({
   data: {
     schoolName:"",
     school:{
-      "_id":101002,
+      // hardcode时候的数据
+     /*  "_id":101002,
       schoolName:"北京一零一中学 - 大兴分校",
       grade:[
         //{level:"高中",class:[2020,2019,2018]},
         {level:"初中",
           class:[{cname:2022,img:"https://user-images.githubusercontent.com/1105915/188637665-f254c340-ce62-47df-ab4c-7e3339f8ba93.jpg"},
                  {cname:2021,img:"https://user-images.githubusercontent.com/1105915/188641769-c05652cd-d455-48a3-b277-f8ce3cc12d72.jpg"},
-                 {cname:2020,img:"https://user-images.githubusercontent.com/1105915/188643406-e4028b0f-94d8-4125-88e6-219ccc216755.jpg"}
+                 {cname:2023,img:"https://user-images.githubusercontent.com/1105915/188643406-e4028b0f-94d8-4125-88e6-219ccc216755.jpg"}
           ]
         }
-      ]
+      ] */
     },
     grade:[],
     class:[],
@@ -40,15 +41,13 @@ Page({
         wx.setStorageSync('school', res.data)
       }
     })*/
-    wx.setStorageSync('school',this.data.school)
+    //wx.setStorageSync('school',this.data.school)
     
-    const cur_sch_id=wx.getStorageSync('school')["_id"];
+    const cur_sch_id=wx.getStorageSync('curschool')["_id"];
     console.log(cur_sch_id);
     const testdb = wx.cloud.database({env: 'prod-dbtpz'});
     const _ = testdb.command
-    testdb.collection('cloth').where({
-      school_id:parseInt(cur_sch_id),
-    })
+    testdb.collection('cloth')
     .get({
       success: function(res) {
         //console.log(res.data)
@@ -59,7 +58,86 @@ Page({
       //要延时执行的代码
      }, 1000) //延迟时间 这里是1秒
 
+
+    //读取orders表数据
+    let that = this;
+    /* comment 减少读写量和安全性 先不读订单了
+    wx.cloud.callFunction({
+      name: "getOrders",
+      success(res) {
+        console.log("读取成功", res.result)
+        that.savaExcel(res.result)
+      },
+      fail(res) {
+        console.log("读取失败", res)
+      }
+    })
+    */
   },
+  //把数据保存到excel里，并把excel保存到云存储
+  savaExcel(userdata) {
+    let that = this
+    //console.log(userdata)
+    wx.cloud.callFunction({
+      name: "excel",
+      data: {
+        userdata: userdata
+      },
+      success(res) {
+        console.log("保存成功", res)
+        //that.getFileUrl(res.result.fileID) //暂时不要传下载文件列表
+        // get resource ID
+        
+      },
+      fail(res) {
+        console.log("保存失败", res)
+      }
+    })
+  },
+  //获取云存储文件下载地址，这个地址有效期一天
+  getFileUrl(fileID) {
+    let that = this;
+    wx.cloud.getTempFileURL({
+      fileList: [fileID],
+      success: res => {
+        // get temp file URL
+        console.log("文件下载链接", res.fileList[0].tempFileURL)
+        that.setData({
+          fileUrl: res.fileList[0].tempFileURL
+        })
+        //发邮件
+        wx.setClipboardData({
+          data: that.data.fileUrl,
+          success(res) {
+            wx.getClipboardData({
+              success(res) {
+                console.log("复制成功",res.data) // data
+              }
+            })
+          }
+        })
+      },
+      fail: err => {
+        // handle error
+      }
+    })
+  },
+  //复制excel文件下载链接
+  copyFileUrl() {
+    let that=this
+    wx.setClipboardData({
+      data: that.data.fileUrl,
+      success(res) {
+        wx.getClipboardData({
+          success(res) {
+            console.log("复制成功",res.data) // data
+          }
+        })
+      }
+    })
+  },
+
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -72,7 +150,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    const school=wx.getStorageSync('school');
+    const school=wx.getStorageSync('curschool');
     //console.log(school[0].grade);
     var g=[],c=[]
     for(let i=0;i<school.grade.length;i++){

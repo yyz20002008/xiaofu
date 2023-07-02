@@ -5,7 +5,8 @@
     <view class="page_section_title"  >{{i.level}}运动校服</view>
       <view class="page_item_wrap">
         <navigator wx:for="{{i.class}}" wx:key="class" wx:for-item="j" class="page_img_wrap" url="/pages/clothitem/index?{{school}}&cloth_grade={{i.level}}&cloth_title={{j.cname}}级{{i.level}}运动校服&cloth_class={{j.cname}}">
-          <image mode='aspectFit' src="{{j.img}}"></image>
+          <view wx:if="{{j.img!=''}}"><image mode='aspectFit' src="{{j.img}}"></image> </view>
+          <view wx:else> <image mode='aspectFit' src="https://user-images.githubusercontent.com/1105915/249530959-2d48a3ed-f216-4cab-a833-fe9141b4f924.png"></image> </view>
           <view>{{j.cname}}级</view>
         </navigator>
       </view>

@@ -26,7 +26,7 @@ Page({
           'https://user-images.githubusercontent.com/1105915/188641766-553ad81f-abf0-43fc-b483-fc0e73ba4838.jpg'
         ]
       },
-      { subclass:'2020',subimg:[
+      { subclass:'2023',subimg:[
         'https://user-images.githubusercontent.com/1105915/188643407-dab5fa0b-5aa8-4247-bb98-0930ef661256.jpg',
         'https://user-images.githubusercontent.com/1105915/188643411-9f2bac90-e808-49af-bc04-87293949fde8.jpg',
         'https://user-images.githubusercontent.com/1105915/188643404-e5e9bb16-3c0e-4c12-9773-3df54b322713.jpg',
@@ -34,7 +34,7 @@ Page({
         ]
       }
     ],
-    cur_level_img:[],
+    cur_level_img:[],//轮播图的图片
     cloth_item_cur:[],
     size: [
       {value: 'S-1', name: 'S-1'},
@@ -154,7 +154,7 @@ Page({
   },
     //options(Object)
   onLoad: function(options) {
-    console.log('onLoad');
+    console.log('onLoad clothitem index');
     const{cloth_id}=options;
     //console.log(cloth_id);
     const{cloth_title}=options;
@@ -191,6 +191,11 @@ Page({
           cur_level_img:this.data.cloth_img[i].subimg
         })
       }
+    }
+    if (this.data.cur_level_img==''){
+      this.setData({
+        cur_level_img:['https://user-images.githubusercontent.com/1105915/249530959-2d48a3ed-f216-4cab-a833-fe9141b4f924.png']
+      })
     }
   },
   

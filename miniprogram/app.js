@@ -18,14 +18,14 @@ App({
     }
    // this.globalData = { serverDate: this.getserverDate()}
     this.getOpenid();
-
+    this.getSchoolList();
     var that = this;
       /*
     that.timer = setInterval(function () {
          that.scanCart(that)
       }, 1000);
       */
-    that.scanCart(that);
+    //that.scanCart(that);
    
     /* // 展示本地存储能力 
     var logs = wx.getStorageSync('logs') || [] 
@@ -64,8 +64,7 @@ App({
   getserverDate:function(){
     wx.cloud.callFunction({
       name: 'getdate', 
-      success: function (res) {
-       
+      success: function (res) {  
         getApp().globalData.serverDate = res.result//.replace(/-/g, '/');
         console.log('云函数返回：'+res.result)
         //console.log('getApp().globalData.serverDate: '+getApp().globalData.serverDate)
@@ -85,6 +84,20 @@ App({
     }
     })
   },
+  //拿到学校列表
+  getSchoolList(){
+    var that = this
+    const testdb = wx.cloud.database({env: 'prod-dbtpz'});
+    const _ = testdb.command
+    testdb.collection('school').get({
+      success: function(res) {
+        //console.log(res.data)
+        wx.setStorageSync('school', res.data)
+      }
+    })
+    
+  }
+  /*
   scanCart: function (that) {
   //把购物车里面的数据都塞到了缓存里，取名cart,任何一项修改购物车的行为，都会先取购物车的缓存，在重新更新缓存里的购物车参数
   //购物车
@@ -105,5 +118,5 @@ App({
         })
     }
   }
-
+  */
 })

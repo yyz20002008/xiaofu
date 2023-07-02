@@ -40,11 +40,12 @@
     "disableUseStrict": false,
     "minifyWXML": true,
     "showES6CompileOption": false,
-    "useCompilerPlugins": false
+    "useCompilerPlugins": false,
+    "condition": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.12.0",
-  "appid": "delete",
+  "appid": "wx5065c2046cf2b498",
   "projectname": "xiaofu",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},

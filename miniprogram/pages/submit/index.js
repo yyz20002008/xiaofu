@@ -22,7 +22,10 @@ Page({
     totalPrice:0,
     shippingFee:10,
     totalNum:0,
-    beijing:''
+    beijing:'',
+    curschoolName:'',
+    curschoolid:''
+
   },
   onLoad:function(){
     //wx.setStorageSync('beijing', utc_beijing(app.globalData.serverDate));
@@ -82,7 +85,8 @@ Page({
       const res=await showModal({content:"您确定要提交订单了吗？请注意退换货费用需自行承担，提交前请最后核对尺码。"});
         if (res.confirm) {
          //提交订单
-         this._callQuestionPay(body, details,goodsnum, subMchId, inputSubmitVal);
+         this._callQuestionPay(body, details,goodsnum, subMchId, 1);
+          //inputSubmitVal);
          //if not wepay, use this.creatOrder(goodsnum);
         } 
     } else {
@@ -163,6 +167,8 @@ Page({
       //env: 'test-3aahe'
       env: 'prod-dbtpz'
     })
+    const curSchoolName = wx.getStorageSync("curschool")["schoolName"];
+    const curSchoolId = wx.getStorageSync("curschool")["_id"];
     testDB.collection('orders').add({
       data: {
         _id:goodsnum,
@@ -170,7 +176,9 @@ Page({
         totalPrice:totalPrice,
         address:address,
         orderDate:curBeijingTime,
-        status:'待发货'
+        status:'待发货',
+        curSchoolName:curSchoolName,
+        curSchoolId:curSchoolId
       },
       success: function(res) {
         // res 是一个对象
@@ -213,7 +221,12 @@ Page({
     //console.log(formateDate);
     /* return `${Math.round(Math.random() * 1000)}${formateDate +
       Math.round(Math.random() * 89 + 100).toString()}`; */
-    return formateDate+Math.round(Math.random() * 100).toString();//不用太多位一秒不会有那么多单
+    let orderNumber=Math.round(Math.random() * 100).toString();//不用太多位一秒不会有那么多单
+    //补0
+    if (orderNumber.length <2){
+      orderNumber='0'+orderNumber
+    }
+    return formateDate+orderNumber;
   },
   
 })

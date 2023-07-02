@@ -17,7 +17,9 @@
         </view>   
       <!--Product-->
         <view class='order_item' >订单内容
+            <view class='order_no_row' >{{curOrder.curSchoolName}}</view> 
             <view class='order_no_row' wx:for="{{curOrder.product}}" wx:key="_id" wx:for-index="index"   >
+               
                 <view class='order_no_value' >{{item.cloth_id}}</view>  
                 <view class='order_no_value' >{{item.cloth_notes}}</view>
                 <view class='order_no_value' >

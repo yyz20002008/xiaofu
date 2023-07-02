@@ -1,69 +1,69 @@
-// pages/showye/index.js
+// pages/showye/showye.js
+import{ request } from "../../request/index.js"
 
+import{formatTime,uuid} from "../../utils/util.js";
+import{utc_beijing} from "../../utils/jumpUtils.js";
 const app = getApp()
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    curServerDate:''
+    icode:'',
+    curServerDate:'',
+    returnSchool:{},
+    src_img:"https://user-images.githubusercontent.com/1105915/249616395-3c41e0b7-1ae1-4b9d-8485-8841302df357.png"
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.setData({ curServerDate:app.globalData.serverDate})
-    console.log(this.data.curServerDate)
+  onLoad(){
+    //把school付给一个字典
+    var that = this
+    wx.getStorage({
+      key:'school',
+      success: function (res) {
+        that.setData({
+          returnSchool:res.data
+        })
+      }
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    console.log(this.data.curServerDate)
+  onShow(){
+    
   },
+  goToSchoolPage: function(e){
+    
+    let {icode}=this.data;
+    console.log(this.data.returnSchool.length)
+    let count = this.data.returnSchool.length
+    for (let i = 0; i < count; i += 1) { 
+      if (this.data.returnSchool[i]['accessCode']==icode){
+        wx.setStorageSync('curschool',this.data.returnSchool[i])
+        wx.switchTab({url: '../school/index',})
+        break
+      }
+      else{
+        wx.showToast({
+          title: '邀请码错误',
+          icon:'none',
+          duration: 2000
+        })
+      }
+      this.setData({
+        icode:'',
+        backMsg:''
+      })
+    }
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    console.log(this.data.curServerDate)
+ 
+    
+    
+    //wx.setStorageSync('icode', this.data.icode)
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  /*获取邀请码*/
+  codeInput: function(e){
+    this.setData({
+      icode: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  clickButton: function(e){
+    console.log("邀请码：" + this.data.icode );
   }
+  
 })
